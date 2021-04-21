@@ -1,0 +1,78 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/functions";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+// 2. Include any default variable overrides here
+$body-bg: #000;
+$body-color: rgb(245, 245, 245);
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// 4. Include any optional Bootstrap components as you like
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/bootstrap-utilities";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+
+// 5. Add additional custom code here
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 {
+  letter-spacing: -1.7px;
+}
+
+.glow__muted {
+  color: #6D6D6D;
+}
+
+// BUTTONS
+.glow__btn {
+  background: #DCDCDC;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: bolder;
+  padding: 0.6rem 1rem;
+  letter-spacing: -0.15px;
+  transition: .15s;
+
+  &:hover {
+    background-color:  #b9b9b9;
+  }
+}
+
+// FORMS
+.glow__input {
+  display: block;
+  background: #000000;
+  border: 1px solid #616161;
+  border-radius: 0.5rem;
+  max-width: 100%;
+  padding: 0.5rem 1rem;
+  margin-top: 7px;
+  color: #fff;
+  transition: .15s;
+
+  &:hover, &:focus{
+    border: 1px solid #afafaf;
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+
+.glow__checkbox {
+  margin-right: 1rem;
+}
