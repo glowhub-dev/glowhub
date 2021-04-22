@@ -1,12 +1,70 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { useHistory } from 'react-router'
+import { AuthContext } from '../../contexts/AuthContext'
+import { register } from '../../services/AuthService'
+import { setAccessToken } from '../../store/AccessTokenStore'
 import Navbar from '../Navbar/Navbar'
 import './Register.scss'
 
 const Register = () => {
+  const [registerForm, setregisterForm] = useState({ name: '', email: '', password: '', error: '' })
+  const [loading, setloading] = useState(false)
+  const { getUser } = useContext(AuthContext)
+  const { push } = useHistory()
+
+  const errorToast = (err) => toast.error(err)
+  const successToast = () => toast.success('Login successful')
+
+  const onChange = (e) => {
+    setregisterForm({ ...registerForm, [e.target.name]: e.target.value })
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const { name, email, password } = registerForm
+    const error1 = 'Debes rellenar todos los campos'
+    const error2 = 'Ha ocurrido un error al registrarte'
+    const error409 = 'Email already registered'
+    setloading(true)
+
+    if (!name || !email || !password) {
+      setregisterForm({ ...registerForm, error: error1 })
+      errorToast(error1)
+      setloading(false)
+    } else {
+
+      try {
+        const token = await register({ name, email, password })
+
+        if (token.access_token) {
+          setAccessToken(token.access_token)
+          await getUser()
+          setTimeout(() => push('/dashboard'), 500)
+        } else {
+          setregisterForm({ ...registerForm, error: error2 })
+          errorToast(error2)
+        }
+
+        setregisterForm({ ...registerForm, error: '' })
+        successToast()
+      } catch (e) {
+        if (e.response.status === 409) {
+          setregisterForm({ ...registerForm, error: error409 })
+          errorToast(error409)
+        } else {
+          setregisterForm({ ...registerForm, error: error2 })
+          errorToast(error2)
+        }
+      }
+    }
+
+  }
 
   return (
     <div className="Register">
       <Navbar />
+      <Toaster />
 
       <div className="container mt-5">
         <div className="row align-items-center justify-content-center">
@@ -30,18 +88,42 @@ const Register = () => {
             <h1 className="m-0 p-0">Welcome</h1>
             <p className="glow__muted">Good to see you again, Manuel</p>
 
-            <form style={{ maxWidth: '30rem' }}>
+            <form onSubmit={onSubmit} style={{ maxWidth: '30rem' }}>
               <div className="mt-4">
                 <label htmlFor="name" className="form-label">Full name</label>
-                <input type="text" className="glow__input w-100" id="name" placeholder="Manuel Carrillo Almoguera" />
+                <input
+                  type="text"
+                  className="glow__input w-100"
+                  id="name"
+                  name="name"
+                  placeholder="Manuel Carrillo Almoguera"
+                  value={registerForm.name}
+                  onChange={onChange}
+                />
               </div>
               <div className="mt-4">
                 <label htmlFor="email" className="form-label">Email address</label>
-                <input type="email" className="glow__input w-100" id="email" placeholder="manucaralmo@gmail.com" />
+                <input
+                  type="email"
+                  className="glow__input w-100"
+                  id="email"
+                  name="email"
+                  placeholder="manucaralmo@gmail.com"
+                  value={registerForm.email}
+                  onChange={onChange}
+                />
               </div>
               <div className="mt-4">
                 <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="glow__input w-100" id="password" placeholder="**********" />
+                <input
+                  type="password"
+                  className="glow__input w-100"
+                  id="password"
+                  name="password"
+                  placeholder="**********"
+                  value={registerForm.password}
+                  onChange={onChange}
+                />
               </div>
               <div className="mt-4">
                 <label>
@@ -50,7 +132,7 @@ const Register = () => {
                 </label>
               </div>
               <div className="mt-5">
-                <button type="submit" className="glow__btn w-100">Register now</button>
+                <button type="submit" className="glow__btn w-100">{!loading ? 'Register now' : 'Loading...'}</button>
               </div>
             </form>
 

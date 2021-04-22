@@ -1,0 +1,32 @@
+.DashboardTopNav {
+  border-bottom: 1px solid #404040;
+  height: 3.5rem;
+  display: flex;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #000;
+  color: #6D6D6D;
+
+  .searchBar {
+    background-color: #000;
+    height: 3.2rem;
+    min-width: 20rem;
+    border: none;
+    color: #fff;
+
+    &:hover, &:focus{
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .DashboardTopNav {
+    display: none;
+  }
+}

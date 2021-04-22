@@ -6,5 +6,9 @@ const http = create({
 })
 
 export const login = (body) => {
-  return http.post('/authorization', body)
+  return http.post('/authenticate', body)
+}
+
+export const register = (body) => {
+  return http.post('/register', body)
 }

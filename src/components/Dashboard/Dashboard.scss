@@ -1,0 +1,13 @@
+.Dashboard {
+  display: flex;
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .children {
+      padding: 2rem;
+    }
+  }
+}

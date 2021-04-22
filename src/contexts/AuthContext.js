@@ -11,10 +11,14 @@ export default function AuthContextProvider({ children }) {
     return getUserInfo().then(res => setUser(res))
   }
 
+  const isLogged = () => {
+    return getUserInfo().then(u => u ? true : false).catch(() => false)
+  }
+
   useEffect(() => {
     getAccessToken() && getUser().catch((e) => { console.log(e) })
   }, [])
 
-  const value = { user, getUser }
+  const value = { user, getUser, isLogged }
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

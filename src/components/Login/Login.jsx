@@ -1,11 +1,65 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { login } from '../../services/AuthService'
+import { setAccessToken } from '../../store/AccessTokenStore'
 import Navbar from '../Navbar/Navbar'
+import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../contexts/AuthContext'
 
 const Login = () => {
+  const [loginForm, setloginForm] = useState({ email: '', password: '', error: '' })
+  const [loading, setloading] = useState(false)
+  const { getUser } = useContext(AuthContext)
+  const { push } = useHistory()
+
+  const errorToast = (err) => toast.error(err)
+  const successToast = () => toast.success('Login successful')
+
+  const onChange = (e) => {
+    setloginForm({ ...loginForm, [e.target.name]: e.target.value })
+  }
+
+  const doLogin = async (e) => {
+    e.preventDefault()
+    setloading(true)
+
+    const error1 = 'Debes rellenar todos los campos'
+    const error2 = 'Ha ocurrido un error al iniciar sesión'
+    const error3 = 'Usuario o contraseña incorrectos'
+
+    if (!loginForm.email || !loginForm.password) {
+      setloginForm({ ...loginForm, error: error1 })
+      errorToast(error1)
+      setloading(false)
+    } else {
+      try {
+        const token = await login({ email: loginForm.email, password: loginForm.password })
+
+        if (token.access_token) {
+          setAccessToken(token.access_token)
+          await getUser()
+          setTimeout(() => push('/dashboard'), 500)
+        } else {
+          setloginForm({ ...loginForm, error: error2 })
+          errorToast(error2)
+        }
+
+        setloginForm({ ...loginForm, error: '' })
+        successToast()
+
+      } catch (e) {
+        setloginForm({ ...loginForm, error: error3 })
+        errorToast(error3)
+      }
+      setloading(false)
+    }
+
+  }
+
   return (
     <>
       <Navbar />
+      <Toaster />
 
       <div className="container">
         <div className="mx-auto mt-5" style={{ maxWidth: '24rem' }}>
@@ -15,15 +69,38 @@ const Login = () => {
             <p className="glow__muted">Good to see you again, Manuel</p>
           </div>
 
-          <form>
+          <form onSubmit={doLogin}>
             <div className="mt-4">
-              <input type="email" className="glow__input w-100" id="email" placeholder="manucaralmo@gmail.com" />
+              <input
+                type="email"
+                className="glow__input w-100"
+                id="email"
+                placeholder="manucaralmo@gmail.com"
+                name="email"
+                onChange={onChange}
+                value={loginForm.email}
+                autoFocus
+              />
             </div>
             <div className="mt-4">
-              <input type="password" className="glow__input w-100" id="password" placeholder="**********" />
+              <input
+                type="password"
+                className="glow__input w-100"
+                id="password"
+                placeholder="**********"
+                name="password"
+                onChange={onChange}
+                value={loginForm.password}
+              />
             </div>
+            {
+              loginForm.error
+              && <div className="mt-4 text-center alert-normal">
+                {loginForm.error}
+              </div>
+            }
             <div className="mt-4">
-              <button type="submit" className="glow__btn w-100">Login</button>
+              <button type="submit" className="glow__btn w-100">{loading ? 'Loading...' : 'Login'}</button>
             </div>
           </form>
 
