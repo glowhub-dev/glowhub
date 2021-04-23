@@ -7,8 +7,9 @@ const DashboardTopNav = () => {
       <div>
         <input type="text" className="searchBar" placeholder="Search accounts" />
       </div>
-      <div>
-        Feedback
+      <div className="nav">
+        <a href="/">Feedback</a>
+        <a href="/">Logout</a>
       </div>
     </div>
   )

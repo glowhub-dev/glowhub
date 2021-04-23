@@ -1,5 +1,5 @@
 .DashboardTopNav {
-  border-bottom: 1px solid #404040;
+  border-bottom: 1px solid #333333;
   height: 3.5rem;
   display: flex;
   padding: 0 2rem;
@@ -10,6 +10,7 @@
   top: 0;
   background-color: #000;
   color: #6D6D6D;
+  z-index: 1;
 
   .searchBar {
     background-color: #000;
@@ -21,6 +22,20 @@
     &:hover, &:focus{
       outline: 0;
       box-shadow: none;
+    }
+  }
+
+  .nav {
+    display: flex;
+
+    a {
+      color: #6D6D6D;
+      text-decoration: none;
+      margin-left: 1.5rem;
+
+      &:hover {
+        color: #e2e2e2;
+      }
     }
   }
 }
