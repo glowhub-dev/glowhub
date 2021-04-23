@@ -11,3 +11,7 @@ export const isUserLoggedIn = () => {
     .then(() => true)
     .catch(() => false)
 }
+
+export const createWebAccount = (body) => {
+  return http.post('/accounts/create', body)
+}

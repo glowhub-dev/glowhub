@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './SideBar.scss'
 
 const SideBar = () => {
@@ -10,7 +11,7 @@ const SideBar = () => {
       <div className="nav">
 
         <div className="secction">
-          <a href="/" className="active">Dashboard</a>
+          <Link to="/dashboard" className="active">Dashboard</Link>
           <a href="/">Manage accounts</a>
         </div>
 

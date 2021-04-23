@@ -4,13 +4,16 @@ import './index.scss';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import AuthContextProvider from './contexts/AuthContext';
+import AccountContextProvider from './contexts/AccountContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <Router>
-        <App />
-      </Router>
+      <AccountContextProvider>
+        <Router>
+          <App />
+        </Router>
+      </AccountContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')

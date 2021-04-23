@@ -38,6 +38,11 @@ h1 {
   color: #6D6D6D;
 }
 
+.card__banner {
+  background-image: linear-gradient(270deg, #00DADA 0%, #0F7CE6 100%);
+  border-radius: 1rem;
+}
+
 // BUTTONS
 .glow__btn {
   background: #DCDCDC;
@@ -47,9 +52,14 @@ h1 {
   padding: 0.6rem 1rem;
   letter-spacing: -0.15px;
   transition: .15s;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  text-align: center;
 
   &:hover {
     background-color:  #b9b9b9;
+    color: #000;
   }
 }
 
@@ -71,6 +81,26 @@ h1 {
     box-shadow: none;
   }
 }
+
+.glow__select {
+  background: #000000;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.4rem 1.5rem;
+  -webkit-appearance: none;
+  user-select: none;
+  transition: .10s ease-in-out;
+
+  &:hover, &:focus{
+    border: 1px solid #afafaf;
+    outline: 0;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
+
 
 .glow__checkbox {
   margin-right: 1rem;
