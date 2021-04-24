@@ -1,7 +1,7 @@
 import React from 'react'
-import SideBar from './SideBar'
+import SideBar from './SideBar/SideBar'
 import './Dashboard.scss'
-import DashboardTopNav from './DashboardTopNav'
+import DashboardTopNav from './TopBar/DashboardTopNav'
 
 const Dashboard = ({ children }) => {
   return (

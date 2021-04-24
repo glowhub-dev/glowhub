@@ -1,15 +1,17 @@
 import React from 'react'
+import { logout } from '../../../store/AccessTokenStore'
 import './DashboardTopNav.scss'
+import { FiSearch } from "react-icons/fi";
 
 const DashboardTopNav = () => {
   return (
     <div className="DashboardTopNav">
       <div>
-        <input type="text" className="searchBar" placeholder="Search accounts" />
+        <FiSearch className="me-1" /> Seach account
       </div>
       <div className="nav">
         <a href="/">Feedback</a>
-        <a href="/">Logout</a>
+        <button onClick={logout}>Logout</button>
       </div>
     </div>
   )
