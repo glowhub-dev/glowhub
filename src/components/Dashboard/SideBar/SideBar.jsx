@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './SideBar.scss'
 import { FiHome, FiGrid, FiBarChart, FiMessageSquare, FiShield, FiUser, FiSettings, FiCreditCard } from "react-icons/fi";
 
@@ -7,7 +7,9 @@ const SideBar = () => {
   return (
     <div className="SideBar">
       <div className="logoSection">
-        <img src="/glowhub.svg" alt="glowhub logo" />
+        <Link to="/dashboard" className="logo">
+          <img src="/glowhub.svg" alt="glowhub logo" />
+        </Link>
       </div>
       <div className="nav">
 

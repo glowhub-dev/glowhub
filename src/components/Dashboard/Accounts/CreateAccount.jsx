@@ -1,18 +1,19 @@
 import React, { useState, useContext } from 'react'
-import Dashboard from './Dashboard'
-import { createWebAccount } from '../../services/UserService'
-import useAccount from '../../hooks/useAccount'
-import { AuthContext } from '../../contexts/AuthContext'
-import toast, { Toaster } from 'react-hot-toast';
+import Dashboard from '../Dashboard'
+import useAccount from '../../../hooks/useAccount'
+import { AuthContext } from '../../../contexts/AuthContext'
+import toast from 'react-hot-toast';
 import { useHistory } from 'react-router'
+import { createWebAccount } from '../../../services/AccountService';
+
+const accountCreated = () => toast.success('Account created successfully')
+const errorOn = () => toast.success('An error has occurred')
 
 const CreateAccount = () => {
-  const [formData, setformData] = useState({ name: '', business_name: '', domains: '' })
+  const [formData, setformData] = useState({ name: '', business_name: '', domains: '', color: '' })
   const { getUser } = useContext(AuthContext)
   const { changeAccount } = useAccount()
   const { push } = useHistory()
-
-  const accountCreated = () => toast.success('Account created successfully')
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -22,8 +23,9 @@ const CreateAccount = () => {
       changeAccount(account.clientID)
       getUser()
       accountCreated()
-      setTimeout(() => { push('/dashboard') }, 500)
+      push('/dashboard')
     } catch (e) {
+      errorOn()
       console.log(e)
     }
   }
@@ -37,7 +39,6 @@ const CreateAccount = () => {
 
   return (
     <Dashboard>
-      <Toaster />
       <div className="mb-4">
         <h1>Create account</h1>
         <p className="glow__muted">Create account to start using GlowHub</p>
@@ -76,6 +77,21 @@ const CreateAccount = () => {
             value={formData.domains}
             onChange={onChange}
           />
+        </div>
+        <div className="mb-3" style={{ maxWidth: '30rem' }}>
+          <label htmlFor="color">Color</label>
+          <select
+            className="glow__select w-100 mt-2"
+            aria-label="Default select example"
+            onChange={onChange}
+            value={formData.color}
+            id='color'
+            name='color'
+          >
+            <option value="#00ace5">Blue</option>
+            <option value="#1cac52">Green</option>
+            <option value="#ffab10">Yellow</option>
+          </select>
         </div>
         <div className="mb-3 mt-4" style={{ maxWidth: '30rem' }}>
           <button className="glow__btn w-100">Create account</button>

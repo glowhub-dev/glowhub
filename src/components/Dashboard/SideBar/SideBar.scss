@@ -13,9 +13,14 @@
     display: flex;
     padding: 0 3rem;
 
-    img {
+    .logo {
       height: 1.75rem;
       margin: auto 0;
+
+      img {
+        height: 1.75rem;
+        margin: auto 0;
+      }
     }
   }
 

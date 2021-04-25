@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getViewsOnline } from '../../../services/ViewsService'
+import { FiArrowRight } from "react-icons/fi";
 
 const OnlineViews = ({ account }) => {
   const [onlineViews, setOnlineViews] = useState()
@@ -33,11 +35,21 @@ const OnlineViews = ({ account }) => {
         <span>Total users online</span>
         <h1 className="fw-light">{onlineViews?.totalUsers}</h1>
 
-        <p className="mt-4 mb-2">Top active pages</p>
-        <small className="glow__muted">Home - loquesea (/home)</small><br />
-        <small className="glow__muted">About us (/about)</small><br />
-        <small className="glow__muted">Another page (/another)</small><br />
-        <small className="glow__muted">Home - loquesea (/home)</small><br />
+        <div className="mb-3">
+          <p className="mt-4 mb-2">Top active pages</p>
+          {
+            onlineViews?.pages.sort((a, b) => a[1] - b[1]).slice(-3).map(page => {
+              return (
+                <small className="glow__muted d-block" key={page[0].path}>
+                  {page[0].title.slice(0, 15)}{page[0].title.length > 10 && '...'} -  /{page[0].path.slice(-10)}
+                </small>)
+            })
+          }
+        </div>
+
+        <Link to="/analytics-online" className="white__link">
+          <small>See more <FiArrowRight /></small>
+        </Link>
       </div>)
       : (<div className="card__dashboard card__dashboard__loading p-4">
         <span className="span"> </span>

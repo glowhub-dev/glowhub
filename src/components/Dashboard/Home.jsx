@@ -5,15 +5,23 @@ import useAccount from '../../hooks/useAccount';
 import GlowChart from './charts/GlowChart';
 import PrimaryCta from './cta/PrimaryCta';
 import OnlineViews from './charts/OnlineViews';
+import { Link } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
+import { getViews } from '../../services/ViewsService';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
+  const [views, setViews] = useState({})
 
   useEffect(() => {
     user && account && setfullAccount(user?.accounts.filter(a => account === a.clientID)[0])
   }, [account, user])
+
+  useEffect(() => {
+    account && getViews(account).then(v => setViews(v)).catch(e => console.log(e))
+  }, [account])
 
   return (
     <Dashboard>
@@ -52,9 +60,19 @@ const Home = () => {
       <div className="mt-4">
         <div className="row g-2 g-md-3">
           <div className="col-lg-9">
-            <div className="card__dashboard p-2">
-              <GlowChart color={fullAccount?.color} type="line" />
+            <div className="card__dashboard p-2 mb-2">
+              {
+                views?.chart1data
+                  ? <GlowChart data={views.chart1data} color={fullAccount?.color} type="line" />
+                  : <div className="card__dashboard__loading p-4">
+                    <span className="span"> </span>
+                    <p className="mt-3 mb-2"></p>
+                  </div>
+              }
             </div>
+            <Link to="/analytics-online" className="white__link__2">
+              <small>See full Analytics <FiArrowRight /></small>
+            </Link>
           </div>
           <div className="col-lg-3">
             <OnlineViews account={account} />

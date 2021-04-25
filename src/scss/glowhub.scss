@@ -122,6 +122,26 @@ h1 {
   }
 }
 
+.white__link {
+  color: #9c9c9c;
+  text-decoration: none;
+
+  &:hover {
+    color: rgb(235, 235, 235);
+    text-decoration: none;
+  }
+}
+
+.white__link__2 {
+  color: #868686;
+  text-decoration: none;
+
+  &:hover {
+    color: rgb(235, 235, 235);
+    text-decoration: none;
+  }
+}
+
 // FORMS
 .glow__input {
   display: block;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { VictoryLine, VictoryBar, VictoryAxis, VictoryChart } from 'victory';
+import { VictoryLine, VictoryBar, VictoryAxis, VictoryChart, VictoryLabel } from 'victory';
 
 const exampleData = [
   { day: '01/04', views: 13000 },
@@ -29,9 +29,19 @@ const GlowChart = ({ data = exampleData, height = 150, x = 'day', y = 'views', c
   return (
     <VictoryChart
       height={height}
-      domainPadding={{ x: 10 }}
-      padding={{ top: 25, bottom: 25, left: 35, right: 20 }}
+      domainPadding={{ x: 0, y: [10, 10] }}
+      padding={{ top: 25, bottom: 25, left: 30, right: 30 }}
     >
+      <VictoryLabel
+        x={10}
+        y={13}
+        style={{
+          fill: '#666766',
+          fontFamily: "inherit",
+          fontSize: "8px",
+        }}
+        text={`Visits from ${data[0].day} to ${data[data.length - 1].day}`}
+      />
       <VictoryAxis
         tickFormat={data.map(d => d.day)}
         style={{
@@ -72,7 +82,7 @@ const GlowChart = ({ data = exampleData, height = 150, x = 'day', y = 'views', c
               duration: 2000,
               onLoad: { duration: 1000 }
             }}
-            interpolation="cardinal"
+            //interpolation="cardinal"
             data={data}
             x={x}
             y={y}
@@ -85,7 +95,6 @@ const GlowChart = ({ data = exampleData, height = 150, x = 'day', y = 'views', c
               duration: 2000,
               onLoad: { duration: 1000 }
             }}
-            interpolation="cardinal"
             data={data}
             x={x}
             y={y}

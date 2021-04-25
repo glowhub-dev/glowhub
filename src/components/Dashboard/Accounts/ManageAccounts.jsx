@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
-import Dashboard from './Dashboard'
+import { AuthContext } from '../../../contexts/AuthContext'
+import Dashboard from '../Dashboard'
 import { FiPlus } from "react-icons/fi";
 
 const ManageAccounts = () => {
@@ -32,7 +32,7 @@ const ManageAccounts = () => {
                   </div>
                 </div>
                 <div className="mt-3 mt-lg-0">
-                  <Link to='/create-account' className="glow__btn__dark me-2">Edit</Link>
+                  <Link to={`/edit-account/${acc.id}`} className="glow__btn__dark me-2">Edit</Link>
                   <Link to='/create-account' className="glow__btn__dark">Code</Link>
                 </div>
               </div>
