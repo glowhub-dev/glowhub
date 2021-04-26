@@ -1,36 +1,12 @@
 import React from 'react'
 import { VictoryLine, VictoryBar, VictoryAxis, VictoryChart, VictoryLabel } from 'victory';
 
-const exampleData = [
-  { day: '01/04', views: 13000 },
-  { day: '02/04', views: 16500 },
-  { day: '03/04', views: 17250 },
-  { day: '04/04', views: 19000 },
-  { day: '05/04', views: 20000 },
-  { day: '06/04', views: 22500 },
-  { day: '07/04', views: 22250 },
-  { day: '08/04', views: 23000 },
-  { day: '09/04', views: 24000 },
-  { day: '10/04', views: 16500 },
-  { day: '11/04', views: 18250 },
-  { day: '12/04', views: 23000 },
-  { day: '13/04', views: 25000 },
-  { day: '14/04', views: 23000 },
-  { day: '15/04', views: 23000 },
-  { day: '16/04', views: 24000 },
-  { day: '17/04', views: 16500 },
-  { day: '18/04', views: 18250 },
-  { day: '19/04', views: 23000 },
-  { day: '20/04', views: 25000 },
-  { day: '21/04', views: 23000 }
-]
-
-const GlowChart = ({ data = exampleData, height = 150, x = 'day', y = 'views', color, type = 'line' }) => {
+const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = 'line' }) => {
   return (
     <VictoryChart
       height={height}
-      domainPadding={{ x: 0, y: [10, 10] }}
-      padding={{ top: 25, bottom: 25, left: 30, right: 30 }}
+      domainPadding={{ x: 0, y: 10 }}
+      padding={{ top: 25, bottom: 25, left: 30, right: 25 }}
     >
       <VictoryLabel
         x={10}

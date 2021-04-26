@@ -5,9 +5,9 @@ import useAccount from '../../hooks/useAccount';
 import GlowChart from './charts/GlowChart';
 import PrimaryCta from './cta/PrimaryCta';
 import OnlineViews from './charts/OnlineViews';
-import { Link } from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi';
 import { getViews } from '../../services/ViewsService';
+import MiniChart from './charts/MiniChart';
+import { FiBarChart, FiMessageSquare, FiShield } from "react-icons/fi";
 
 const Home = () => {
   const { user } = useContext(AuthContext)
@@ -70,12 +70,66 @@ const Home = () => {
                   </div>
               }
             </div>
-            <Link to="/analytics-online" className="white__link__2">
-              <small>See full Analytics <FiArrowRight /></small>
-            </Link>
           </div>
           <div className="col-lg-3">
             <OnlineViews account={account} />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <h3 className="mb-4">Products overview</h3>
+        <div className="row g-2 g-md-3">
+          <div className="col-lg-4">
+            <div className="card__dashboard p-4">
+              <div className="glow__muted d-flex justify-content-between">
+                <FiBarChart />
+                <span>Glow Analytics</span>
+              </div>
+              <div className="mt-3 mb-0 d-flex justify-content-between">
+                <span>Last week users</span>
+                <span>5.467</span>
+              </div>
+              <div className="mb-2 d-flex justify-content-between">
+                <span>Last month users</span>
+                <span>15.450</span>
+              </div>
+              {views.chart1data && <MiniChart data={views.chart1data} color={'#FF9027'} />}
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div className="card__dashboard p-4">
+              <div className="glow__muted d-flex justify-content-between">
+                <FiShield />
+                <span>Glow Cookies</span>
+              </div>
+              <div className="mt-3 mb-0 d-flex justify-content-between">
+                <span>Cookies Accepted</span>
+                <span>15.000</span>
+              </div>
+              <div className="mb-2 d-flex justify-content-between">
+                <span>Cookies Rejected</span>
+                <span>15.000</span>
+              </div>
+              {views.chart1data && <MiniChart data={views.chart1data} color={'#00ADE5'} />}
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div className="card__dashboard p-4">
+              <div className="glow__muted d-flex justify-content-between">
+                <FiMessageSquare />
+                <span>Glow Feedback</span>
+              </div>
+              <div className="mt-3 mb-0 d-flex justify-content-between">
+                <span>Last week users</span>
+                <span>5.467</span>
+              </div>
+              <div className="mb-2 d-flex justify-content-between">
+                <span>Last month users</span>
+                <span>15.450</span>
+              </div>
+              {views.chart1data && <MiniChart data={views.chart1data} color={'#c700ae'} />}
+            </div>
           </div>
         </div>
       </div>

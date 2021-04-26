@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getViewsOnline } from '../../../services/ViewsService'
+import { getViewsOnlineHomeWidget } from '../../../services/ViewsService'
 import { FiArrowRight } from "react-icons/fi";
 
 const OnlineViews = ({ account }) => {
@@ -9,7 +9,7 @@ const OnlineViews = ({ account }) => {
 
   const getViews = useCallback(async () => {
     try {
-      const views = await getViewsOnline(account)
+      const views = await getViewsOnlineHomeWidget(account)
       views && setOnlineViews(views)
       setLoading(false)
     } catch (e) {
