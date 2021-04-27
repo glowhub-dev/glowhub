@@ -12,7 +12,7 @@ const MiniChart = ({ data, height = 40, x = 'day', y = 'views', color, type = 'l
       <VictoryAxis style={{ tickLabels: { fontSize: 0 } }} />
       <VictoryLine
         style={{
-          data: { stroke: color, strokeWidth: 4, opacity: 0.4 },
+          data: { stroke: '#fff', strokeWidth: 4, opacity: 0.4 },
         }}
         animate={{
           duration: 2000,

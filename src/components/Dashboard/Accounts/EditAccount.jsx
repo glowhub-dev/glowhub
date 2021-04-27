@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
 import toast from 'react-hot-toast'
 import { useHistory, useParams } from 'react-router'
+import { AccountContext } from '../../../contexts/AccountContext'
 import { AuthContext } from '../../../contexts/AuthContext'
 import { editWebAccount, getAccount, deleteAccount } from '../../../services/AccountService'
+import { deleteAccountStore } from '../../../store/AccountStore'
+import Popup from '../../Misc/Popup'
 import Dashboard from '../Dashboard'
 
 const accountUpdated = () => toast.success('Account updated successfully')
@@ -14,6 +17,12 @@ const EditAccount = () => {
   const { push } = useHistory()
   const { getUser } = useContext(AuthContext)
   const [account, setAccount] = useState({ name: '', business_name: '', domains: '', color: '' })
+  const [isOpen, setIsOpen] = useState(false)
+  const { resetAccount } = useContext(AccountContext)
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen)
+  }
 
   useEffect(() => {
     getAccount(id).then(a => setAccount(a))
@@ -27,9 +36,9 @@ const EditAccount = () => {
     e.preventDefault()
     try {
       await editWebAccount(id, account)
-      getUser()
-      accountUpdated()
-      push('/manage-accounts')
+      getUser() // Update user context
+      accountUpdated() // Toast
+      push('/manage-accounts') // Redirect
     } catch (e) {
       errorOn()
       console.log(e)
@@ -41,6 +50,9 @@ const EditAccount = () => {
       await deleteAccount(id)
       getUser()
       accountDeleted()
+      deleteAccountStore()
+      resetAccount()
+
       push('/manage-accounts')
     } catch (e) {
       console.log(e)
@@ -109,7 +121,15 @@ const EditAccount = () => {
         </div>
       </form>
 
-      <button className="glow__btn mt-3" onClick={deleteAccountPerm}>Delete account</button>
+      <button className="glow__btn mt-3" onClick={togglePopup}>Delete account</button>
+      {
+        isOpen &&
+        <Popup close={togglePopup}>
+          <h3>¿Realmente deseas eliminar esta cuenta?</h3>
+          <p>Eliminar es una acción irreversible y no podrás recuperar los datos más adelante.</p>
+          <button className="glow__btn mt-4 w-100" onClick={deleteAccountPerm}>Delete account</button>
+        </Popup>
+      }
     </Dashboard>
   )
 }

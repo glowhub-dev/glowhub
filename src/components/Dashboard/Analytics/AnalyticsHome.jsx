@@ -4,7 +4,7 @@ import useAccount from '../../../hooks/useAccount'
 import { getViews } from '../../../services/ViewsService'
 import GlowChart from '../charts/GlowChart'
 import Dashboard from '../Dashboard'
-import OnlineViews from '../charts/OnlineViews';
+import OnlineViews from '../widgets/OnlineViews';
 
 const AnalyticsHome = () => {
   const { user } = useContext(AuthContext)
@@ -82,25 +82,25 @@ const AnalyticsHome = () => {
           <div className="col-sm-4 col-lg-3">
             <div className="card__dashboard p-4 mb-2">
               <span className="glow__muted">Total users</span>
-              <h1 className="fw-light m-0">500</h1>
+              <h2 className="fw-light m-0">500</h2>
             </div>
           </div>
           <div className="col-sm-4 col-lg-3">
             <div className="card__dashboard p-4 mb-2">
               <span className="glow__muted">Total views</span>
-              <h1 className="fw-light m-0">43.446</h1>
+              <h2 className="fw-light m-0">43.446</h2>
             </div>
           </div>
           <div className="col-sm-4 col-lg-3">
             <div className="card__dashboard p-4 mb-2">
               <span className="glow__muted">User sessions</span>
-              <h1 className="fw-light m-0">1,34</h1>
+              <h2 className="fw-light m-0">1,34</h2>
             </div>
           </div>
           <div className="col-sm-4 col-lg-3">
             <div className="card__dashboard p-4 mb-2">
               <span className="glow__muted">Session mean time</span>
-              <h1 className="fw-light m-0">01:47</h1>
+              <h2 className="fw-light m-0">01:47</h2>
             </div>
           </div>
         </div>

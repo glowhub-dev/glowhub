@@ -7,6 +7,6 @@ export const setAccountStore = (clientID) => {
   accountId = clientID
 }
 
-export const deleteAccount = () => {
+export const deleteAccountStore = () => {
   window.localStorage.removeItem("account")
 }

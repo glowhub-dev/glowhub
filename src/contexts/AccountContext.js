@@ -15,6 +15,6 @@ export default function AccountContextProvider({ children }) {
     setAccount(accID)
   }
 
-  const value = { account, setAccountID }
+  const value = { account, setAccountID, resetAccount: setAccount }
   return <AccountContext.Provider value={value}>{children}</AccountContext.Provider>
 }

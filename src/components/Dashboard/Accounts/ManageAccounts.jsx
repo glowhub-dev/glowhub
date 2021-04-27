@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../contexts/AuthContext'
 import Dashboard from '../Dashboard'
 import { FiPlus } from "react-icons/fi";
+import Popup from '../../Misc/Popup';
+import CreateAccount from './CreateAccount';
 
 const ManageAccounts = () => {
   const { user } = useContext(AuthContext)
+
+  const [isOpen, setIsOpen] = useState(false)
+  const togglePopup = () => { setIsOpen(!isOpen) }
 
   return (
     <Dashboard>
@@ -15,7 +20,7 @@ const ManageAccounts = () => {
           <p className="glow__muted mb-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
-          <Link to='/create-account' className="glow__btn__dark mb-2 py-2"><FiPlus className="me-1" /> Create account</Link>
+          <button onClick={togglePopup} className="glow__btn__dark mb-2 py-2"><FiPlus className="me-1" /> Create account</button>
         </div>
       </div>
 
@@ -40,6 +45,14 @@ const ManageAccounts = () => {
           )
         })}
       </div>
+
+
+      {
+        isOpen &&
+        <Popup close={togglePopup}>
+          <CreateAccount />
+        </Popup>
+      }
     </Dashboard>
   )
 }

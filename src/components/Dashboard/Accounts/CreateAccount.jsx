@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import Dashboard from '../Dashboard'
 import useAccount from '../../../hooks/useAccount'
 import { AuthContext } from '../../../contexts/AuthContext'
 import toast from 'react-hot-toast';
@@ -38,7 +37,7 @@ const CreateAccount = () => {
   }
 
   return (
-    <Dashboard>
+    <>
       <div className="mb-4">
         <h1>Create account</h1>
         <p className="glow__muted">Create account to start using GlowHub</p>
@@ -97,7 +96,7 @@ const CreateAccount = () => {
           <button className="glow__btn w-100">Create account</button>
         </div>
       </form>
-    </Dashboard>
+    </>
   )
 }
 
