@@ -10,6 +10,10 @@ export const getViewsOnlineHomeWidget = (account) => {
   return http.get(`/analytics/getViewsOnlineHomeWidget/${account}`)
 }
 
+export const getAnalyticsHomeWidget = (account) => {
+  return http.get(`/analytics/getAnalyticsHomeWidget/${account}`)
+}
+
 export const getViews = (account) => {
   return http.get(`/analytics/getFullViews/${account}`)
 }

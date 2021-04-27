@@ -4,6 +4,7 @@ import useAccount from '../../../hooks/useAccount'
 import { getViews } from '../../../services/ViewsService'
 import GlowChart from '../charts/GlowChart'
 import Dashboard from '../Dashboard'
+import CustomMiniWidget from '../widgets/CustomMiniWidget'
 import OnlineViews from '../widgets/OnlineViews';
 
 const AnalyticsHome = () => {
@@ -80,28 +81,28 @@ const AnalyticsHome = () => {
 
         <div className="row g-2 g-md-3 mt-1">
           <div className="col-sm-4 col-lg-3">
-            <div className="card__dashboard p-4 mb-2">
-              <span className="glow__muted">Total users</span>
-              <h2 className="fw-light m-0">500</h2>
-            </div>
+            <CustomMiniWidget
+              title="Total users"
+              data="500"
+            />
           </div>
           <div className="col-sm-4 col-lg-3">
-            <div className="card__dashboard p-4 mb-2">
-              <span className="glow__muted">Total views</span>
-              <h2 className="fw-light m-0">43.446</h2>
-            </div>
+            <CustomMiniWidget
+              title="Total views"
+              data="43.446"
+            />
           </div>
           <div className="col-sm-4 col-lg-3">
-            <div className="card__dashboard p-4 mb-2">
-              <span className="glow__muted">User sessions</span>
-              <h2 className="fw-light m-0">1,34</h2>
-            </div>
+            <CustomMiniWidget
+              title="User sessions"
+              data="1,34"
+            />
           </div>
           <div className="col-sm-4 col-lg-3">
-            <div className="card__dashboard p-4 mb-2">
-              <span className="glow__muted">Session mean time</span>
-              <h2 className="fw-light m-0">01:47</h2>
-            </div>
+            <CustomMiniWidget
+              title="Session mean time"
+              data="01:47"
+            />
           </div>
         </div>
       </div>

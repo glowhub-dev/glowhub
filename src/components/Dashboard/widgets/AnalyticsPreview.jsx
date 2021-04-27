@@ -1,9 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { FiBarChart } from "react-icons/fi"
+import { getAnalyticsHomeWidget } from '../../../services/ViewsService'
 import MiniChart from '../charts/MiniChart'
 
-const AnalyticsPreview = () => {
-  const [loading, setLoading] = useState(false)
+const AnalyticsPreview = ({ account }) => {
+  const [views, setViews] = useState()
+  const [loading, setLoading] = useState(true)
+
+  const getViews = useCallback(async () => {
+    try {
+      const views = await getAnalyticsHomeWidget(account)
+      views && setViews(views)
+      setLoading(false)
+    } catch (e) {
+      console.log(e)
+    }
+  }, [account])
+
+  useEffect(() => {
+    setLoading(true)
+  }, [account])
+
+  useEffect(() => {
+    if (account) { getViews() }
+  }, [account, getViews])
+
 
   return (
     !loading
@@ -14,13 +35,13 @@ const AnalyticsPreview = () => {
         </div>
         <div className="mt-3 mb-0 d-flex justify-content-between">
           <span>Last week users</span>
-          <span>5.467</span>
+          <span>{views && views.totalUsers}</span>
         </div>
         <div className="mb-2 d-flex justify-content-between">
-          <span>Last month users</span>
-          <span>15.450</span>
+          <span>Last week views</span>
+          <span>{views && views.totalViews}</span>
         </div>
-        {/* {views.chart1data && <MiniChart data={views.chart1data} />} */}
+        {views.chart1data && <MiniChart data={views?.chart1data} />}
       </div>
 
       : <div className="card__dashboard card__dashboard__loading p-4">

@@ -83,13 +83,13 @@ const Home = () => {
         <h3 className="mb-4">Products overview</h3>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
-            <AnalyticsPreview />
+            <AnalyticsPreview account={account} />
           </div>
           <div className="col-lg-4">
-            <CookiesPreview />
+            <CookiesPreview account={account} />
           </div>
           <div className="col-lg-4">
-            <FeedBackPreview />
+            <FeedBackPreview account={account} />
           </div>
         </div>
       </div>
