@@ -41,7 +41,7 @@ const Home = () => {
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-8">
           <h1>Dashboard</h1>
-          <p className="glow__muted mb-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
+          <p className="glow__muted mb-3 mb-md-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select

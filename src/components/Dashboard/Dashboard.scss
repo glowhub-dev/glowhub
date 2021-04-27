@@ -11,3 +11,18 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .Dashboard {
+    display: block;
+  
+    .content {
+      width: 100%;
+      display: block;
+  
+      .children {
+        padding: 1rem;
+      }
+    }
+  }
+}
