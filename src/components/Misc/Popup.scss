@@ -1,12 +1,15 @@
 .glow__popup {
-  position: absolute;
+  position: fixed;
   background: #0e0e0ebb;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 4;
   padding: 15px;
+  overflow-y: scroll;
 
   .box {
     position: relative;

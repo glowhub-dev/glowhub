@@ -7,6 +7,7 @@ import Dashboard from '../Dashboard'
 import CustomMiniWidget from '../widgets/CustomMiniWidget'
 import CustomWidget from '../widgets/CustomWidget'
 import OnlineViews from '../widgets/OnlineViews';
+import TopBrowsers from '../widgets/TopBrowsers'
 const oneDayInMilisec = (1000 * 60 * 60 * 24)
 
 const AnalyticsHome = () => {
@@ -175,27 +176,10 @@ const AnalyticsHome = () => {
             />
           </div>
           <div className="col-lg-4">
-            <div className="card__dashboard p-4">
-              <span className="glow__muted">Top browsers</span>
-              <div className="mt-3 mb-0 d-flex justify-content-between">
-                <div>
-                  <img src="/images/browsers/chrome.svg" height="20px" className="me-3" alt="spain" />
-                  Google Chrome
-                </div>
-                <div>
-                  32
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  <img src="/images/browsers/safari.svg" height="20px" className="me-3" alt="spain" />
-                  Safari
-                </div>
-                <div>
-                  13
-                </div>
-              </div>
-            </div>
+            <TopBrowsers
+              title='Top browsers'
+              data={views.topBrowsers}
+            />
           </div>
           <div className="col-lg-4">
             <CustomWidget
