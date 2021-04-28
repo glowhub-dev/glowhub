@@ -4,7 +4,7 @@ import { getAccessToken, logout } from "../store/AccessTokenStore"
 export const create = (opts = {}) => {
 
   const http = axios.create({
-    baseURL: "https://glowhub-api.herokuapp.com",
+    baseURL: "http://localhost:3001", //https://glowhub-api.herokuapp.com
     ...opts,
   })
 

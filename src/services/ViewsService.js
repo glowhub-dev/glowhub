@@ -14,6 +14,6 @@ export const getAnalyticsHomeWidget = (account) => {
   return http.get(`/analytics/getAnalyticsHomeWidget/${account}`)
 }
 
-export const getViews = (account) => {
-  return http.get(`/analytics/getFullViews/${account}`)
+export const getViews = ({ account, params }) => {
+  return http.get(`/analytics/getFullViews/${account}`, { params })
 }

@@ -19,7 +19,13 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
         text={`Visits from ${data[0].day} to ${data[data.length - 1].day}`}
       />
       <VictoryAxis
-        tickFormat={data.map(d => d.day)}
+        tickFormat={(x, i) => {
+          if (data.length < 10) {
+            return x
+          } else if (i % (Math.floor(data.length / 10)) === 0) {
+            return x
+          }
+        }}
         style={{
           axis: { stroke: '#FFF', strokeWidth: 0 },
           ticks: { strokeWidth: 0 },

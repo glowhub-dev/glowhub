@@ -1,13 +1,13 @@
 import React from 'react'
 import { logout } from '../../../store/AccessTokenStore'
 import './DashboardTopNav.scss'
-import { FiSearch } from "react-icons/fi";
+import { FiRepeat } from "react-icons/fi";
 
-const DashboardTopNav = () => {
+const DashboardTopNav = ({ changeAccount }) => {
   return (
     <div className="DashboardTopNav">
-      <div>
-        <FiSearch className="me-1" /> Seach account
+      <div onClick={changeAccount} className="w-100 acc__search">
+        <FiRepeat className="me-1" /> Change account
       </div>
       <div className="nav">
         <a href="/">Feedback</a>

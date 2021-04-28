@@ -6,20 +6,32 @@ import GlowChart from '../charts/GlowChart'
 import Dashboard from '../Dashboard'
 import CustomMiniWidget from '../widgets/CustomMiniWidget'
 import OnlineViews from '../widgets/OnlineViews';
+const oneDayInMilisec = (1000 * 60 * 60 * 24)
 
 const AnalyticsHome = () => {
   const { user } = useContext(AuthContext)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
   const [views, setViews] = useState({})
+  const [fromDate, setFromDate] = useState(6)
+  const [chartType, setChartType] = useState('line')
+
+  const changeFromDate = (e) => setFromDate(e.target.value)
+  const changeChartType = (e) => setChartType(e.target.value)
 
   useEffect(() => {
     user && account && setfullAccount(user?.accounts.filter(a => account === a.clientID)[0])
   }, [account, user])
 
   useEffect(() => {
-    account && getViews(account).then(v => setViews(v)).catch(e => console.log(e))
-  }, [account])
+    account && getViews({
+      account, params: {
+        fromDate: (new Date().getTime() - oneDayInMilisec * fromDate)
+      }
+    })
+      .then(v => setViews(v))
+      .catch(e => console.log(e))
+  }, [account, fromDate])
 
   return (
     <Dashboard>
@@ -32,13 +44,25 @@ const AnalyticsHome = () => {
           <select
             className="glow__select mb-2 me-2"
             aria-label="Default select example"
+            onChange={changeFromDate}
+            value={fromDate}
           >
-            <option value="7days">Last 7 days</option>
-            <option value="7days">Last 14 days</option>
-            <option value="7days">Last month</option>
-            <option value="7days">Last 3 months</option>
-            <option value="7days">Last 6 months</option>
-            <option value="7days">Last year</option>
+            <option value={6}>Last 7 days</option>
+            <option value={13}>Last 14 days</option>
+            <option value={29}>Last month</option>
+            <option value={89}>Last 3 months</option>
+            <option value={179}>Last 6 months</option>
+            <option value={359}>Last year</option>
+          </select>
+
+          <select
+            className="glow__select mb-2 me-2"
+            aria-label="Default select example"
+            onChange={changeChartType}
+            value={chartType}
+          >
+            <option value='line'>Lines chart</option>
+            <option value='bar'>Bars chart</option>
           </select>
 
           <select
@@ -65,7 +89,7 @@ const AnalyticsHome = () => {
                   ? <GlowChart
                     data={views.chart1data}
                     color={fullAccount?.color}
-                    type="bar"
+                    type={chartType}
                   />
                   : <div className="card__dashboard__loading p-4">
                     <span className="span"> </span>

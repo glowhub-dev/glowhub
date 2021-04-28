@@ -9,8 +9,8 @@ import CreateAccount from './CreateAccount';
 const ManageAccounts = () => {
   const { user } = useContext(AuthContext)
 
-  const [isOpen, setIsOpen] = useState(false)
-  const togglePopup = () => { setIsOpen(!isOpen) }
+  const [createModal, setcreateModal] = useState(false)
+  const togglecreateModal = () => { setcreateModal(!createModal) }
 
   return (
     <Dashboard>
@@ -20,7 +20,7 @@ const ManageAccounts = () => {
           <p className="glow__muted mb-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
-          <button onClick={togglePopup} className="glow__btn__dark mb-2 py-2"><FiPlus className="me-1" /> Create account</button>
+          <button onClick={togglecreateModal} className="glow__btn__dark mb-2 py-2"><FiPlus className="me-1" /> Create account</button>
         </div>
       </div>
 
@@ -48,11 +48,12 @@ const ManageAccounts = () => {
 
 
       {
-        isOpen &&
-        <Popup close={togglePopup}>
+        createModal &&
+        <Popup close={togglecreateModal}>
           <CreateAccount />
         </Popup>
       }
+
     </Dashboard>
   )
 }

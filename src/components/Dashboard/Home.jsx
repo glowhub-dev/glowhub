@@ -22,7 +22,9 @@ const Home = () => {
   }, [account, user])
 
   useEffect(() => {
-    account && getViews(account).then(v => setViews(v)).catch(e => console.log(e))
+    account && getViews({ account })
+      .then(v => setViews(v))
+      .catch(e => console.log(e))
   }, [account])
 
   return (
