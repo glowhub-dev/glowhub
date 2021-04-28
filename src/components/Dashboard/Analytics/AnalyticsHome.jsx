@@ -5,6 +5,7 @@ import { getViews } from '../../../services/ViewsService'
 import GlowChart from '../charts/GlowChart'
 import Dashboard from '../Dashboard'
 import CustomMiniWidget from '../widgets/CustomMiniWidget'
+import CustomWidget from '../widgets/CustomWidget'
 import OnlineViews from '../widgets/OnlineViews';
 const oneDayInMilisec = (1000 * 60 * 60 * 24)
 
@@ -83,7 +84,7 @@ const AnalyticsHome = () => {
       <div className="mt-4">
         <div className="row g-2 g-md-3">
           <div className="col-lg-9">
-            <div className="card__dashboard p-2 mb-2">
+            <div className="card__dashboard p-2">
               {
                 views?.chart1data
                   ? <GlowChart
@@ -93,7 +94,7 @@ const AnalyticsHome = () => {
                   />
                   : <div className="card__dashboard__loading p-4">
                     <span className="span"> </span>
-                    <p className="mt-3 mb-2"></p>
+                    <p className="mt-3"></p>
                   </div>
               }
             </div>
@@ -107,25 +108,25 @@ const AnalyticsHome = () => {
           <div className="col-sm-4 col-lg-3">
             <CustomMiniWidget
               title="Total users"
-              data="500"
+              data={views.totalUsers}
             />
           </div>
           <div className="col-sm-4 col-lg-3">
             <CustomMiniWidget
               title="Total views"
-              data="43.446"
+              data={views.totalViews}
             />
           </div>
           <div className="col-sm-4 col-lg-3">
             <CustomMiniWidget
               title="User sessions"
-              data="1,34"
+              data={views.totalViews && (views.totalViews / views.totalUsers).toFixed(1)}
             />
           </div>
           <div className="col-sm-4 col-lg-3">
             <CustomMiniWidget
               title="Session mean time"
-              data="01:47"
+              data={views.meanTimeInPage && (views.meanTimeInPage / 1000).toFixed(2)}
             />
           </div>
         </div>
@@ -168,33 +169,10 @@ const AnalyticsHome = () => {
             </div>
           </div>
           <div className="col-lg-4">
-            <div className="card__dashboard p-4">
-              <span className="glow__muted">Top cities</span>
-              <div className="mt-3 mb-0 d-flex justify-content-between">
-                <div>
-                  Madrid - Spain
-                </div>
-                <div>
-                  32
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  Toledo - Spain
-                </div>
-                <div>
-                  13
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  Ciudad de México
-                </div>
-                <div>
-                  12
-                </div>
-              </div>
-            </div>
+            <CustomWidget
+              title='Top cities'
+              data={views.topCities}
+            />
           </div>
           <div className="col-lg-4">
             <div className="card__dashboard p-4">
@@ -220,62 +198,16 @@ const AnalyticsHome = () => {
             </div>
           </div>
           <div className="col-lg-4">
-            <div className="card__dashboard p-4">
-              <span className="glow__muted">Top Operate System</span>
-              <div className="mt-3 mb-0 d-flex justify-content-between">
-                <div>
-                  Android
-                </div>
-                <div>
-                  132
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  iOS
-                </div>
-                <div>
-                  94
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  Undefined
-                </div>
-                <div>
-                  14
-                </div>
-              </div>
-            </div>
+            <CustomWidget
+              title='Top Operate System'
+              data={views.topOS}
+            />
           </div>
           <div className="col-lg-4">
-            <div className="card__dashboard p-4">
-              <span className="glow__muted">Top traffic sources</span>
-              <div className="mt-3 mb-0 d-flex justify-content-between">
-                <div>
-                  Instagram
-                </div>
-                <div>
-                  132
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  Google
-                </div>
-                <div>
-                  94
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  Yahoo
-                </div>
-                <div>
-                  14
-                </div>
-              </div>
-            </div>
+            <CustomWidget
+              title='Top traffic sources'
+              data={views.topRefDomains}
+            />
           </div>
         </div>
       </div>

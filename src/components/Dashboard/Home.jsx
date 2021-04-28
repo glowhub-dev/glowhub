@@ -64,13 +64,13 @@ const Home = () => {
       <div className="mt-4">
         <div className="row g-2 g-md-3">
           <div className="col-lg-9">
-            <div className="card__dashboard p-2 mb-2">
+            <div className="card__dashboard p-2">
               {
                 views?.chart1data
                   ? <GlowChart data={views.chart1data} color={fullAccount?.color} type="line" />
                   : <div className="card__dashboard__loading p-4">
                     <span className="span"> </span>
-                    <p className="mt-3 mb-2"></p>
+                    <p className="mt-3"></p>
                   </div>
               }
             </div>

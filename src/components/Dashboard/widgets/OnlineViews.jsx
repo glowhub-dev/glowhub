@@ -31,27 +31,29 @@ const OnlineViews = ({ account }) => {
 
   return (
     !loading
-      ? (<div className="card__dashboard p-4">
-        <span>Total users online</span>
-        <h1 className="fw-light">{onlineViews?.totalUsers}</h1>
+      ? (<div className="card__dashboard p-4 h-100 d-flex flex-column justify-content-between">
+        <div>
+          <span>Total users online</span>
+          <h1 className="fw-light">{onlineViews?.totalUsers}</h1>
 
-        <div className="mb-3">
-          <p className="mt-4 mb-2">Top active pages</p>
-          {
-            onlineViews?.pages.sort((a, b) => a[1] - b[1]).slice(-3).map(page => {
-              return (
-                <small className="glow__muted d-block" key={page[0].path}>
-                  {page[0].title.slice(0, 15)}{page[0].title.length > 10 && '...'} -  /{page[0].path.slice(-10)}
-                </small>)
-            })
-          }
+          <div className="mb-3">
+            <p className="mt-4 mb-2">Top active pages</p>
+            {
+              onlineViews?.pages.sort((a, b) => a[1] - b[1]).slice(-3).map(page => {
+                return (
+                  <small className="glow__muted d-block" key={page[0].path}>
+                    {page[0].title.slice(0, 15)}{page[0].title.length > 10 && '...'} -  /{page[0].path.slice(-10)}
+                  </small>)
+              })
+            }
+          </div>
         </div>
 
         <Link to="/analytics-online" className="white__link">
           <small>See more <FiArrowRight /></small>
         </Link>
       </div>)
-      : (<div className="card__dashboard card__dashboard__loading p-4">
+      : (<div className="card__dashboard card__dashboard__loading p-4 h-100">
         <span className="span"> </span>
         <p className="mt-3 mb-2"></p>
       </div>)
