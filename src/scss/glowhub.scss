@@ -52,6 +52,7 @@ h1 {
 
 .card__hoverable {
   cursor: pointer;
+  display: block;
   user-select: none;
   transition: .15s ease-in-out;
 

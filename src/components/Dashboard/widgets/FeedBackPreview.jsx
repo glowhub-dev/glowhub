@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FiMessageSquare } from "react-icons/fi";
+import { Link } from 'react-router-dom';
+import { getCookiesWidget } from '../../../services/CookiesService';
 import MiniChart from '../charts/MiniChart';
 
-const FeedBackPreview = () => {
-  const [loading, setLoading] = useState(false)
+const FeedBackPreview = ({ account }) => {
+  const [loading, setLoading] = useState(true)
+  const [wdata, setwdata] = useState({})
+
+  useEffect(() => {
+    account && getCookiesWidget(account)
+      .then(data => {
+        setwdata(data)
+        setLoading(false)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }, [account])
 
   return (
     !loading
-      ? <div className="card__dashboard p-4">
+      ? <Link to="/feedback" className="card__dashboard card__hoverable p-4">
         <div className="glow__muted d-flex justify-content-between">
           <FiMessageSquare />
           <span>Glow Feedback</span>
@@ -20,8 +34,8 @@ const FeedBackPreview = () => {
           <span>Last month users</span>
           <span>15.450</span>
         </div>
-        {/* {views.chart1data && <MiniChart data={views.chart1data} />} */}
-      </div>
+        {wdata.chartData && <MiniChart data={wdata.chartData} />}
+      </Link>
 
       : <div className="card__dashboard card__dashboard__loading p-4">
         <span className="m-0"></span>

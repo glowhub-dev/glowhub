@@ -19,10 +19,10 @@ export const create = (opts = {}) => {
   http.interceptors.response.use(
     (response) => response.data,
     (error) => {
-      if (opts.logoutOnUnauthorized && error.response && 401 === error.response.status) {
+      if (opts.logoutOnUnauthorized && error.response && 401 === error.response?.status) {
         logout()
         return
-      } else if (error.response.status === 403) {
+      } else if (error.response?.status === 403) {
         window.location.assign("/")
       }
 

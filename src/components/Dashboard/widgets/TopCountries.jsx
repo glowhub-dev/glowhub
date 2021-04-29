@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TopBrowsers = ({ title, data }) => {
+const TopCountries = ({ data, title }) => {
   return (
     <>
       {
@@ -14,8 +14,9 @@ const TopBrowsers = ({ title, data }) => {
                 return (
                   <div key={id} className="mt-2 mb-0 d-flex justify-content-between">
                     <div>
-                      {d[0].toLowerCase().includes('safari') && <img src="/images/browsers/safari.svg" height="20px" className="me-3" alt="safari" />}
-                      {d[0].toLowerCase().includes('chrome') && <img src="/images/browsers/chrome.svg" height="20px" className="me-3" alt="chrome" />}
+                      {
+                        d[0] && <img src={`/images/flags/${d[0]?.toLowerCase()}.svg`} height="20px" className="me-3" alt={d[0] || 'Undefined'} />
+                      }
                       {d[0] || 'Undefined'}
                     </div>
                     <div>{d[1]}</div>
@@ -35,4 +36,4 @@ const TopBrowsers = ({ title, data }) => {
   )
 }
 
-export default TopBrowsers
+export default TopCountries

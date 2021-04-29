@@ -8,6 +8,7 @@ import CustomMiniWidget from '../widgets/CustomMiniWidget'
 import CustomWidget from '../widgets/CustomWidget'
 import OnlineViews from '../widgets/OnlineViews';
 import TopBrowsers from '../widgets/TopBrowsers'
+import TopCountries from '../widgets/TopCountries'
 const oneDayInMilisec = (1000 * 60 * 60 * 24)
 
 const AnalyticsHome = () => {
@@ -138,36 +139,10 @@ const AnalyticsHome = () => {
         <p className="glow__muted">Audience overview</p>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
-            <div className="card__dashboard p-4">
-              <span className="glow__muted">Top countries</span>
-              <div className="mt-3 mb-0 d-flex justify-content-between">
-                <div>
-                  <img src="/images/flags/spain.svg" height="20px" className="me-3" alt="spain" />
-                  Spain
-                </div>
-                <div>
-                  56
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  <img src="/images/flags/usa.svg" height="20px" className="me-3" alt="spain" />
-                  United States
-                </div>
-                <div>
-                  47
-                </div>
-              </div>
-              <div className="mt-2 mb-0 d-flex justify-content-between">
-                <div>
-                  <img src="/images/flags/mexico.svg" height="20px" className="me-3" alt="spain" />
-                  Mexico
-                </div>
-                <div>
-                  43
-                </div>
-              </div>
-            </div>
+            <TopCountries
+              title='Top countries'
+              data={views.topCountries}
+            />
           </div>
           <div className="col-lg-4">
             <CustomWidget

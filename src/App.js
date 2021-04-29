@@ -1,5 +1,4 @@
 import { Route, Switch } from 'react-router';
-import './App.scss';
 import CreateAccount from './components/Dashboard/Accounts/CreateAccount';
 import EditAccount from './components/Dashboard/Accounts/EditAccount';
 import ManageAccounts from './components/Dashboard/Accounts/ManageAccounts';
@@ -12,6 +11,7 @@ import Error404 from './components/Misc/Error404';
 import Register from './components/Register/Register';
 import './scss/glowhub.scss'
 import PrivateRoute from './utils/ProtectedRoute';
+import Profile from './components/Dashboard/Profile/Profile';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <PrivateRoute exact path="/analytics" component={AnalyticsHome} />
         <PrivateRoute exact path="/cookies" component={Cookies} />
         <PrivateRoute exact path="/feedback" component={Feedback} />
+        <PrivateRoute exact path="/profile" component={Profile} />
 
         {/* 404 Route */}
         <Route path="*" component={Error404} />

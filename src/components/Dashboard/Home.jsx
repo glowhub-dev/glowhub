@@ -42,7 +42,7 @@ const Home = () => {
 
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-8">
-          <h1>Dashboard</h1>
+          <h1 className="mb-0">Dashboard</h1>
           <p className="glow__muted mb-3 mb-md-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
@@ -81,8 +81,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mt-4">
-        <h3 className="mb-4">Products overview</h3>
+      <div className="mt-5">
+        <div className="mb-4">
+          <h3 className="mb-0">Products overview</h3>
+          <p className="glow__muted">Last week overview</p>
+        </div>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
             <AnalyticsPreview account={account} />
