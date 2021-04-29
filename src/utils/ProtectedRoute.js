@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom'
+import Loading from '../components/Misc/Loading';
 import { AuthContext } from '../contexts/AuthContext';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -14,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route {...rest} render={(props) => (
       logged
         ? <Component {...props} />
-        : logged === undefined ? ('Loading..') : <Redirect to="/" />
+        : logged === undefined ? <Loading /> : <Redirect to="/" />
     )} />
   )
 }
