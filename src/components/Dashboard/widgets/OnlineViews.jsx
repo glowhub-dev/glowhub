@@ -50,7 +50,7 @@ const OnlineViews = ({ account }) => {
           </div>
         </div>
 
-        <Link to="/analytics-online" className="white__link">
+        <Link to="/online" className="white__link">
           <small>See more <FiArrowRight /></small>
         </Link>
       </div>)

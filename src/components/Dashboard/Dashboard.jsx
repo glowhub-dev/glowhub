@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import PropTypes from 'prop-types';
 import SideBar from './SideBar/SideBar'
 import './Dashboard.scss'
 import DashboardTopNav from './TopBar/DashboardTopNav'
@@ -60,6 +61,10 @@ const Dashboard = ({ children }) => {
       }
     </div>
   )
+}
+
+Dashboard.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 export default Dashboard

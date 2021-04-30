@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const TopBrowsers = ({ title, data }) => {
   return (
     <>
       {
         data
-          ? <div className="card__dashboard p-4 h-100 card__hoverable">
+          ? <Link to="/audience" className="card__dashboard p-4 h-100 card__hoverable">
             <div className="mb-3">
               <span className="glow__muted">{title}</span>
             </div>
@@ -24,7 +25,7 @@ const TopBrowsers = ({ title, data }) => {
                 )
               })
             }
-          </div>
+          </Link>
           : <div className="card__dashboard p-1 mb-2">
             <div className="card__dashboard__loading p-4">
               <span></span>

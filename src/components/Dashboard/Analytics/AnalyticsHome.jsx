@@ -40,7 +40,7 @@ const AnalyticsHome = () => {
     <Dashboard>
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-4">
-          <h1>Glow Analytics</h1>
+          <h1 className="mb-0">Glow Analytics</h1>
           <p className="glow__muted">Create account to start using GlowHub</p>
         </div>
         <div className="col-sm-8 text-left text-sm-end d-flex justify-content-start justify-content-md-end flex-wrap pb-3">
@@ -148,6 +148,7 @@ const AnalyticsHome = () => {
             <CustomWidget
               title='Top cities'
               data={views.topCities}
+              link="/audience"
             />
           </div>
           <div className="col-lg-4">
@@ -160,12 +161,14 @@ const AnalyticsHome = () => {
             <CustomWidget
               title='Top Operate System'
               data={views.topOS}
+              link="/audience"
             />
           </div>
           <div className="col-lg-4">
             <CustomWidget
               title='Top traffic sources'
               data={views.topRefDomains}
+              link="/audience"
             />
           </div>
         </div>

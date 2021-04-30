@@ -1,6 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { VictoryLine, VictoryBar, VictoryAxis, VictoryChart, VictoryLabel } from 'victory';
+import {
+  VictoryLine,
+  VictoryBar,
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryTooltip,
+
+  VictoryVoronoiContainer
+} from 'victory';
 
 const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = 'line' }) => {
   return (
@@ -8,6 +17,20 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
       height={height}
       domainPadding={{ x: 0, y: 10 }}
       padding={{ top: 25, bottom: 25, left: 30, right: 25 }}
+
+      containerComponent={
+        <VictoryVoronoiContainer voronoiDimension="x"
+          labels={({ datum }) => `${datum.views} views`}
+          labelComponent={
+            <VictoryTooltip cornerRadius={5}
+              flyoutStyle={{
+                fill: "none",
+                stroke: 'none'
+              }}
+              pointerLength={3}
+            />}
+        />
+      }
     >
       <VictoryLabel
         x={10}
@@ -60,6 +83,11 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
           ? <VictoryLine
             style={{
               data: { stroke: color, strokeWidth: 2 },
+              labels: {
+                fontFamily: "inherit",
+                fontSize: 8,
+                fill: '#fff'
+              }
             }}
             animate={{
               duration: 2000,
@@ -73,6 +101,11 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
           : <VictoryBar
             style={{
               data: { fill: color },
+              labels: {
+                fontFamily: "inherit",
+                fontSize: 8,
+                fill: '#fff'
+              }
             }}
             animate={{
               duration: 2000,
@@ -93,7 +126,7 @@ GlowChart.propTypes = {
   x: PropTypes.string,
   y: PropTypes.string,
   color: PropTypes.string.isRequired,
-  type: PropTypes.string
+  type: PropTypes.oneOf(['line', 'bar'])
 }
 
 export default GlowChart

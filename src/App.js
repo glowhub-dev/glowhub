@@ -12,6 +12,8 @@ import Register from './components/Register/Register';
 import './scss/glowhub.scss'
 import PrivateRoute from './utils/ProtectedRoute';
 import Profile from './components/Dashboard/Profile/Profile';
+import Audience from './components/Dashboard/Analytics/Audience';
+import Online from './components/Dashboard/Analytics/Online';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <PrivateRoute exact path="/manage-accounts" component={ManageAccounts} />
         <PrivateRoute exact path="/edit-account/:id" component={EditAccount} />
         <PrivateRoute exact path="/analytics" component={AnalyticsHome} />
+        <PrivateRoute exact path="/audience" component={Audience} />
+        <PrivateRoute exact path="/online" component={Online} />
         <PrivateRoute exact path="/cookies" component={Cookies} />
         <PrivateRoute exact path="/feedback" component={Feedback} />
         <PrivateRoute exact path="/profile" component={Profile} />

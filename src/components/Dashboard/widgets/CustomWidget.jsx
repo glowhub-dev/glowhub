@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const CustomWidget = ({ title, data }) => {
+const CustomWidget = ({ title, data, link }) => {
 
   return (
     <>
       {
         data
-          ? <div className="card__dashboard p-4 h-100 card__hoverable">
+          ? <Link to={link} className="card__dashboard p-4 h-100 card__hoverable">
             <div className="mb-3">
               <span className="glow__muted">{title}</span>
             </div>
@@ -21,7 +22,7 @@ const CustomWidget = ({ title, data }) => {
                 )
               })
             }
-          </div>
+          </Link>
           : <div className="card__dashboard p-1 mb-2">
             <div className="card__dashboard__loading p-4">
               <span></span>
@@ -34,7 +35,8 @@ const CustomWidget = ({ title, data }) => {
 }
 
 CustomWidget.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired
 }
 
 export default CustomWidget

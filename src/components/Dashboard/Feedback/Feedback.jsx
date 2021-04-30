@@ -5,7 +5,7 @@ const Feedback = () => {
   return (
     <Dashboard>
       <div className="mb-4">
-        <h1>Glow Feedback</h1>
+        <h1 className="mb-0">Glow Feedback</h1>
         <p className="glow__muted">Create account to start using GlowHub</p>
       </div>
     </Dashboard>
