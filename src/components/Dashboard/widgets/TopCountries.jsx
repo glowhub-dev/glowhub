@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const TopCountries = ({ data, title }) => {
   return (
@@ -34,6 +35,10 @@ const TopCountries = ({ data, title }) => {
       }
     </>
   )
+}
+
+TopCountries.propTypes = {
+  title: PropTypes.string.isRequired
 }
 
 export default TopCountries

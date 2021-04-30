@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types';
 import { FiShield } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import { getCookiesWidget } from '../../../services/CookiesService';
@@ -43,6 +44,10 @@ const CookiesPreview = ({ account }) => {
         <span className="mt-3"></span>
       </div>
   )
+}
+
+CookiesPreview.propTypes = {
+  account: PropTypes.string,
 }
 
 export default CookiesPreview

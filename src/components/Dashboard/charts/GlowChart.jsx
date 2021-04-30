@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { VictoryLine, VictoryBar, VictoryAxis, VictoryChart, VictoryLabel } from 'victory';
 
 const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = 'line' }) => {
@@ -84,6 +85,15 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
       }
     </VictoryChart>
   )
+}
+
+GlowChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  height: PropTypes.number,
+  x: PropTypes.string,
+  y: PropTypes.string,
+  color: PropTypes.string.isRequired,
+  type: PropTypes.string
 }
 
 export default GlowChart

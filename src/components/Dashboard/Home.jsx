@@ -29,7 +29,6 @@ const Home = () => {
 
   return (
     <Dashboard>
-
       {
         user?.accounts.length <= 0
         && <PrimaryCta

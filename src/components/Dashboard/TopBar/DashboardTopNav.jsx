@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { logout } from '../../../store/AccessTokenStore'
 import './DashboardTopNav.scss'
 import { FiRepeat } from "react-icons/fi";
@@ -15,6 +16,10 @@ const DashboardTopNav = ({ changeAccount }) => {
       </div>
     </div>
   )
+}
+
+DashboardTopNav.propTypes = {
+  changeAccount: PropTypes.func.isRequired
 }
 
 export default DashboardTopNav

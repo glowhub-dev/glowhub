@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const CustomWidget = ({ title, data }) => {
 
@@ -30,6 +31,10 @@ const CustomWidget = ({ title, data }) => {
       }
     </>
   )
+}
+
+CustomWidget.propTypes = {
+  title: PropTypes.string.isRequired
 }
 
 export default CustomWidget

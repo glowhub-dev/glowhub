@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const CustomMiniWidget = ({ title, data }) => {
   return (
@@ -17,6 +18,10 @@ const CustomMiniWidget = ({ title, data }) => {
       }
     </>
   )
+}
+
+CustomMiniWidget.propTypes = {
+  title: PropTypes.string.isRequired
 }
 
 export default CustomMiniWidget

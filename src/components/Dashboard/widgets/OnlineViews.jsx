@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import { getViewsOnlineHomeWidget } from '../../../services/ViewsService'
 import { FiArrowRight } from "react-icons/fi";
@@ -58,6 +59,10 @@ const OnlineViews = ({ account }) => {
         <p className="mt-3 mb-2"></p>
       </div>)
   )
+}
+
+OnlineViews.propTypes = {
+  account: PropTypes.string
 }
 
 export default OnlineViews

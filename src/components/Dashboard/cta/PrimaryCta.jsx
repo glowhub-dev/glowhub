@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 const PrimaryCta = ({ title, desc, to, text }) => {
@@ -15,6 +16,13 @@ const PrimaryCta = ({ title, desc, to, text }) => {
       </div>
     </div>
   )
+}
+
+PrimaryCta.propTypes = {
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default PrimaryCta

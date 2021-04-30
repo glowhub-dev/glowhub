@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import PropTypes from 'prop-types';
 import './Popup.scss'
 
 const Popup = ({ children, close }) => {
@@ -17,6 +18,10 @@ const Popup = ({ children, close }) => {
       </div>
     </div>
   )
+}
+
+Popup.propTypes = {
+  close: PropTypes.func.isRequired
 }
 
 export default Popup

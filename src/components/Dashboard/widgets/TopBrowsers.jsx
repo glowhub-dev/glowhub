@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const TopBrowsers = ({ title, data }) => {
   return (
@@ -33,6 +34,10 @@ const TopBrowsers = ({ title, data }) => {
       }
     </>
   )
+}
+
+TopBrowsers.propTypes = {
+  title: PropTypes.string.isRequired
 }
 
 export default TopBrowsers

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import { FiBarChart } from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { getAnalyticsHomeWidget } from '../../../services/ViewsService'
@@ -50,6 +51,10 @@ const AnalyticsPreview = ({ account }) => {
         <span className="mt-3"></span>
       </div>
   )
+}
+
+AnalyticsPreview.propTypes = {
+  account: PropTypes.string,
 }
 
 export default AnalyticsPreview

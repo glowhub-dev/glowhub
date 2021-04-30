@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types';
 import { FiMessageSquare } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import { getCookiesWidget } from '../../../services/CookiesService';
@@ -42,6 +43,10 @@ const FeedBackPreview = ({ account }) => {
         <span className="mt-3"></span>
       </div>
   )
+}
+
+FeedBackPreview.propTypes = {
+  account: PropTypes.string
 }
 
 export default FeedBackPreview

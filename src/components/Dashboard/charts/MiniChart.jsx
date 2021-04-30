@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { VictoryLine, VictoryAxis, VictoryChart } from 'victory';
 
-const MiniChart = ({ data, height = 40, x = 'day', y = 'views', color, type = 'line' }) => {
+const MiniChart = ({ data, height = 40, x = 'day', y = 'views', type = 'line' }) => {
   return (
     <VictoryChart
       height={height}
@@ -24,6 +25,14 @@ const MiniChart = ({ data, height = 40, x = 'day', y = 'views', color, type = 'l
       />
     </VictoryChart>
   )
+}
+
+MiniChart.propTypes = {
+  data: PropTypes.array.isRequired,
+  height: PropTypes.number,
+  x: PropTypes.string,
+  y: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default MiniChart
