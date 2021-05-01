@@ -123,6 +123,24 @@ h1 {
   }
 }
 
+.glow__btn__github {
+  background: #000000;
+  border-radius: 0.5rem;
+  border: 1px solid #404040;
+  padding: 0.6rem 1rem;
+  letter-spacing: -0.15px;
+  transition: .15s;
+  text-decoration: none;
+  color: rgb(211, 211, 211);
+  display: block;
+  text-align: center;
+
+  &:hover {
+    border: 1px solid rgb(212, 212, 212);
+    color: #fff;
+  }
+}
+
 .glow__btn__dark {
   background: transparent;
   border: 1px solid #404040;

@@ -8,9 +8,16 @@ import { deleteAccountStore } from '../../../store/AccountStore'
 import Popup from '../../Misc/Popup'
 import Dashboard from '../Dashboard'
 
-const accountUpdated = () => toast.success('Account updated successfully')
-const accountDeleted = () => toast.success('Account deleted successfully')
-const errorOn = () => toast.success('An error has occurred')
+const toastConfig = {
+  style: {
+    borderRadius: '10px',
+    background: '#333',
+    color: '#fff',
+  },
+}
+const accountUpdated = () => toast.success('Account updated successfully', toastConfig)
+const accountDeleted = () => toast.success('Account deleted successfully', toastConfig)
+const errorOn = () => toast.success('An error has occurred', toastConfig)
 
 const EditAccount = () => {
   let { id } = useParams()
@@ -20,9 +27,7 @@ const EditAccount = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { resetAccount } = useContext(AccountContext)
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen)
-  }
+  const togglePopup = () => { setIsOpen(!isOpen) }
 
   useEffect(() => {
     getAccount(id).then(a => setAccount(a))

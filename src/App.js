@@ -14,6 +14,8 @@ import PrivateRoute from './utils/ProtectedRoute';
 import Profile from './components/Dashboard/Profile/Profile';
 import Audience from './components/Dashboard/Analytics/Audience';
 import Online from './components/Dashboard/Analytics/Online';
+import ResetPassword from './components/Login/ResetPassword';
+import ChangePassword from './components/Login/ChangePassword';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route exact path="/change-password" component={ChangePassword} />
 
         {/* Private routes */}
         <PrivateRoute exact path="/dashboard" component={Home} />

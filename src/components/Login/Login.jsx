@@ -1,20 +1,37 @@
-import React, { useState, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { login } from '../../services/AuthService'
+import React, { useState, useContext, useEffect } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { login, githubLogin } from '../../services/AuthService'
 import { setAccessToken } from '../../store/AccessTokenStore'
 import Navbar from '../Navbar/Navbar'
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthContext'
+import { FaGithub } from "react-icons/fa";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+const toastConfig = {
+  style: {
+    borderRadius: '10px',
+    background: '#333',
+    color: '#fff',
+  },
+}
+const errorToast = (err) => toast.error(err, toastConfig)
+const successToast = () => toast.success('Login successful', toastConfig)
+const loadingToast = () => toast.loading('Loading', toastConfig)
 
 const Login = () => {
   const [loginForm, setloginForm] = useState({ email: '', password: '', error: '' })
   const [loading, setloading] = useState(false)
+  const [gbToken, setgbToken] = useState(null)
+  const [logging, setLogging] = useState(false)
   const { getUser } = useContext(AuthContext)
   const { push } = useHistory()
+  let query = useQuery()
 
-  const errorToast = (err) => toast.error(err)
-  const successToast = () => toast.success('Login successful')
-
+  // EMAIL LOGIN
   const onChange = (e) => {
     setloginForm({ ...loginForm, [e.target.name]: e.target.value })
   }
@@ -56,6 +73,34 @@ const Login = () => {
 
   }
 
+  // GITHUB LOGIN
+  useEffect(() => {
+    const doGithubLogin = async () => {
+      setLogging(true)
+      try {
+        loadingToast()
+        const token = await githubLogin(gbToken)
+        if (token.access_token) {
+          setAccessToken(token.access_token)
+          await getUser()
+          toast.dismiss()
+          successToast()
+          setTimeout(() => push('/dashboard'), 500)
+        }
+      } catch (e) {
+        errorToast('An error has ocurred')
+        setLogging(false)
+      }
+    }
+
+    gbToken && !logging && doGithubLogin()
+  }, [gbToken, push, getUser, logging])
+
+  useEffect(() => {
+    setgbToken(query.get("code"))
+  }, [query])
+
+
   return (
     <>
       <Navbar />
@@ -66,7 +111,7 @@ const Login = () => {
 
           <div className="text-center">
             <h1 className="m-0 p-0">Welcome back</h1>
-            <p className="glow__muted">Good to see you again, Manuel</p>
+            <p className="glow__muted">Don't have an account? <Link to="/register" className="white__link">Sign up</Link></p>
           </div>
 
           <form onSubmit={doLogin}>
@@ -104,9 +149,14 @@ const Login = () => {
             </div>
           </form>
 
-          <div className="mt-4 text-center">
-            <small className="glow__muted">Don't have an account? <Link to="/register" className="text-white">Sign Up</Link></small>
+          <div className="my-4 text-center">
+            <small className="glow__muted">¿Has olvidado la contraseña? <Link to="/reset-password" className="white__link">Haz click aquí</Link></small>
+            <hr />
           </div>
+
+          <a href="http://localhost:3001/github-auth" className="glow__btn__github w-100 mt-3">
+            <FaGithub className="me-2" /> Login with Github
+          </a>
         </div>
       </div>
     </>
