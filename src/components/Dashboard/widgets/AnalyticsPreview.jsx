@@ -37,11 +37,20 @@ const AnalyticsPreview = ({ account }) => {
         </div>
         <div className="mt-3 mb-0 d-flex justify-content-between">
           <span>Last week users</span>
-          <span>{views && views.totalUsers}</span>
+          <span>
+            <small className={`me-2 ${views && views.percentUsers < 0 ? 'text-danger' : 'text-success'}`}>
+              ({views && views.percentUsers})
+            </small>
+            {views && views.totalUsers}
+          </span>
         </div>
         <div className="mb-2 d-flex justify-content-between">
           <span>Last week views</span>
-          <span>{views && views.totalViews}</span>
+          <span>
+            <small className={`me-2 ${views && views.percentViews < 0 ? 'text-danger' : 'text-success'}`}>
+              ({views && views.percentViews})</small>
+            {views && views.totalViews}
+          </span>
         </div>
         {views.chart1data && <MiniChart data={views?.chart1data} />}
       </Link>

@@ -2,15 +2,40 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../contexts/AuthContext'
 import Dashboard from '../Dashboard'
-import { FiPlus } from "react-icons/fi";
+import { FiClipboard, FiPlus } from "react-icons/fi";
 import Popup from '../../Misc/Popup';
 import CreateAccount from './CreateAccount';
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import toast from 'react-hot-toast';
+
 const ManageAccounts = () => {
   const { user } = useContext(AuthContext)
-
   const [createModal, setcreateModal] = useState(false)
   const togglecreateModal = () => { setcreateModal(!createModal) }
+
+  const [showCode, setshowCode] = useState(false)
+  const toggleShowCode = () => { setshowCode(!showCode) }
+  const codeString = `<script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.1/src/glowCookies.min.js"></script>
+  <script>
+      glowCookies.start('en', { 
+          style: 1,
+          analytics: 'G-FH87DE17XF'
+      });
+  </script>`
+  const toastConfig = {
+    style: {
+      borderRadius: '10px',
+      background: '#333',
+      color: '#fff',
+    },
+  }
+  const copied = () => toast.success('Copied to clipboard', toastConfig)
+  const copyToclipboard = () => {
+    navigator.clipboard.writeText(codeString)
+    copied()
+  }
 
   return (
     <Dashboard>
@@ -38,7 +63,7 @@ const ManageAccounts = () => {
                 </div>
                 <div className="mt-3 mt-lg-0">
                   <Link to={`/edit-account/${acc.id}`} className="glow__btn__dark me-2">Edit</Link>
-                  <Link to='/create-account' className="glow__btn__dark">Code</Link>
+                  <button onClick={toggleShowCode} className="glow__btn__dark">Code</button>
                 </div>
               </div>
             </div>
@@ -46,11 +71,31 @@ const ManageAccounts = () => {
         })}
       </div>
 
-
       {
         createModal &&
         <Popup close={togglecreateModal}>
           <CreateAccount />
+        </Popup>
+      }
+
+      {
+        showCode &&
+        <Popup close={toggleShowCode}>
+          <div className="mb-4">
+            <h3 className="mb-0">Your script</h3>
+            <p>Copy & paste this code snnipet to your html body tag.</p>
+          </div>
+
+          <SyntaxHighlighter language="javascript" style={atomDark}>
+            {codeString}
+          </SyntaxHighlighter>
+
+          <button
+            className="glow__btn__dark mt-3"
+            onClick={copyToclipboard}
+          >
+            <FiClipboard className="me-1" /> Copy code
+          </button>
         </Popup>
       }
 

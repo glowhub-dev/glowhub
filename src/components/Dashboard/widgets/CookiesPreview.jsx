@@ -30,11 +30,21 @@ const CookiesPreview = ({ account }) => {
         </div>
         <div className="mt-3 mb-0 d-flex justify-content-between">
           <span>Cookies Accepted</span>
-          <span>{wdata?.accepted}</span>
+          <span>
+            <small className={`me-2 ${wdata && wdata.percentAccepted < 0 ? 'text-danger' : 'text-success'}`}>
+              ({wdata && wdata.percentAccepted})
+            </small>
+            {wdata?.accepted}
+          </span>
         </div>
         <div className="mb-2 d-flex justify-content-between">
           <span>Cookies Rejected</span>
-          <span>{wdata?.rejected}</span>
+          <span>
+            <small className={`me-2 ${wdata && wdata.percentRejected < 0 ? 'text-danger' : 'text-success'}`}>
+              ({wdata && wdata.percentRejected})
+            </small>
+            {wdata?.rejected}
+          </span>
         </div>
         {wdata.chartData && <MiniChart data={wdata.chartData} />}
       </Link>

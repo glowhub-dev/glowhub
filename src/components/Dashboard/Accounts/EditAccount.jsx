@@ -66,10 +66,16 @@ const EditAccount = () => {
 
   return (
     <Dashboard>
-
-      <div className="mb-4">
-        <h1>Edit account</h1>
-        <p className="glow__muted">Create account to start using GlowHub</p>
+      <div className="row justify-content-between align-items-end mb-3">
+        <div className="col-sm-8">
+          <h1 className="mb-0">Edit account</h1>
+          <p className="glow__muted">Edit your account: {account.name}</p>
+        </div>
+        <div className="col-sm-4 text-left text-sm-end">
+          <button className="glow__btn__dark mb-3" onClick={togglePopup}>
+            Delete account
+          </button>
+        </div>
       </div>
 
       <form onSubmit={onSubmit}>
@@ -99,7 +105,7 @@ const EditAccount = () => {
           <label htmlFor="business_name">Domain</label>
           <input
             className="glow__input w-100"
-            type="text"
+            type="url"
             placeholder="https://www.mydomain.com"
             name="domains"
             value={account.domains}
@@ -126,7 +132,6 @@ const EditAccount = () => {
         </div>
       </form>
 
-      <button className="glow__btn mt-3" onClick={togglePopup}>Delete account</button>
       {
         isOpen &&
         <Popup close={togglePopup}>
