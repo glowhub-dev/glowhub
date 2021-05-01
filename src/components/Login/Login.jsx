@@ -154,7 +154,7 @@ const Login = () => {
             <hr />
           </div>
 
-          <a href="http://localhost:3001/github-auth" className="glow__btn__github w-100 mt-3">
+          <a href={`${process.env.REACT_APP_BASE_URL}/github-auth`} className="glow__btn__github w-100 mt-3">
             <FaGithub className="me-2" /> Login with Github
           </a>
         </div>
