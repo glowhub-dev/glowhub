@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { FiMessageSquare } from "react-icons/fi";
 import { Link } from 'react-router-dom';
-import { getCookiesWidget } from '../../../services/CookiesService';
 import MiniChart from '../charts/MiniChart';
+import { getFeedbackWidget } from '../../../services/FeedbackService';
 
 const FeedBackPreview = ({ account }) => {
   const [loading, setLoading] = useState(true)
   const [wdata, setwdata] = useState({})
 
   useEffect(() => {
-    account && getCookiesWidget(account)
+    account && getFeedbackWidget(account)
       .then(data => {
         setwdata(data)
         setLoading(false)
@@ -28,12 +28,22 @@ const FeedBackPreview = ({ account }) => {
           <span>Glow Feedback</span>
         </div>
         <div className="mt-3 mb-0 d-flex justify-content-between">
-          <span>Last week users</span>
-          <span>5.467</span>
+          <span>Positive feedback</span>
+          <span>
+            <small className={`me-2 ${wdata.percentPositive < 0 ? 'text-danger' : 'text-success'}`}>
+              ({wdata.percentPositive})
+            </small>
+            {wdata.positive}
+          </span>
         </div>
         <div className="mb-2 d-flex justify-content-between">
-          <span>Last month users</span>
-          <span>15.450</span>
+          <span>Negative feedback</span>
+          <span>
+            <small className={`me-2 ${wdata.percentNegative > 0 ? 'text-danger' : 'text-success'}`}>
+              ({wdata.percentNegative})
+            </small>
+            {wdata.negative}
+          </span>
         </div>
         {wdata.chartData && <MiniChart data={wdata.chartData} />}
       </Link>
