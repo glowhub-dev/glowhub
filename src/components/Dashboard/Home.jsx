@@ -5,7 +5,7 @@ import useAccount from '../../hooks/useAccount';
 import GlowChart from './charts/GlowChart';
 import PrimaryCta from './cta/PrimaryCta';
 import OnlineViews from './widgets/OnlineViews';
-import { getViews } from '../../services/ViewsService';
+import { getAnalyticsHomeWidget } from '../../services/ViewsService';
 import AnalyticsPreview from './widgets/AnalyticsPreview'
 import CookiesPreview from './widgets/CookiesPreview';
 import FeedBackPreview from './widgets/FeedBackPreview'
@@ -22,7 +22,7 @@ const Home = () => {
   }, [account, user])
 
   useEffect(() => {
-    account && getViews({ account })
+    account && getAnalyticsHomeWidget(account)
       .then(v => setViews(v))
       .catch(e => console.log(e))
   }, [account])

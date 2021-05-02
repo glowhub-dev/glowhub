@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className="Navbar d-block d-md-none">
       <div className="NavbarDesktop">
         <div className="container d-flex justify-content-between align-items-center">
-          <Link to="/">
+          <Link to="/dashboard">
             <img className="NavbarDesktop__img" src="/glowhub.svg" alt="glowhub logo" />
           </Link>
         </div>

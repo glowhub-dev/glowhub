@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import {
   VictoryLine,
@@ -11,7 +11,24 @@ import {
   VictoryVoronoiContainer
 } from 'victory';
 
-const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = 'line' }) => {
+const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }) => {
+
+  const [height, setHeight] = useState(150)
+  const setHeightw = () => {
+    setHeight(window.innerWidth <= 550 ? 350 : 150)
+  }
+
+  useEffect(() => {
+    setHeightw()
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('resize', setHeightw)
+    return () => {
+      window.removeEventListener('resize', setHeightw)
+    }
+  }, [])
+
   return (
     <VictoryChart
       height={height}
@@ -80,9 +97,10 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
       />
       {
         type === 'line'
-          ? <VictoryLine
+          ?
+          <VictoryLine
             style={{
-              data: { stroke: color, strokeWidth: 2 },
+              data: { stroke: color, strokeWidth: window.innerWidth <= 550 ? 5 : 2 },
               labels: {
                 fontFamily: "inherit",
                 fontSize: 8,
@@ -93,7 +111,6 @@ const GlowChart = ({ data, height = 150, x = 'day', y = 'views', color, type = '
               duration: 2000,
               onLoad: { duration: 1000 }
             }}
-            //interpolation="cardinal"
             data={data}
             x={x}
             y={y}
