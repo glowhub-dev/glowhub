@@ -7,7 +7,7 @@ import { getTotalCookiesWidget, updateBanner, getBanner } from '../../../service
 import CookiesBannerPreview from '../widgets/CookiesBannerPreview'
 import toast from 'react-hot-toast'
 import { Collapse } from 'react-collapse';
-import { FiChevronDown } from 'react-icons/fi'
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 
 const toastConfig = {
   style: {
@@ -129,7 +129,18 @@ const Cookies = () => {
                     </div>
                   </div>
                   <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">Open <FiChevronDown className="ms-1" /></button>
+                    <button type='button' className="glow__btn__dark w-100">
+                      {
+                        !textCollapse
+                          ? 'Open'
+                          : 'Close'
+                      }
+                      {
+                        textCollapse
+                          ? <FiChevronUp className="ms-1" />
+                          : <FiChevronDown className="ms-1" />
+                      }
+                    </button>
                   </div>
                 </div>
                 <Collapse isOpened={textCollapse}>
@@ -206,12 +217,24 @@ const Cookies = () => {
                   <div className="d-flex align-items-center">
                     <div className="acc__avatar" style={{ backgroundColor: '#35363a' }}></div>
                     <div>
-                      <h6 className="m-0">Customize colors</h6>
-                      <small className="glow__muted d-block">Change backgrounds, text colors, style, etc.</small>
+                      <h6 className="m-0">Customize banner styles</h6>
+                      <small className="glow__muted d-block">
+                        Change backgrounds, text colors, style, etc.</small>
                     </div>
                   </div>
                   <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">Open <FiChevronDown className="ms-1" /></button>
+                    <button type='button' className="glow__btn__dark w-100">
+                      {
+                        !stylesCollapse
+                          ? 'Open'
+                          : 'Close'
+                      }
+                      {
+                        stylesCollapse
+                          ? <FiChevronUp className="ms-1" />
+                          : <FiChevronDown className="ms-1" />
+                      }
+                    </button>
                   </div>
                 </div>
                 <Collapse isOpened={stylesCollapse}>
@@ -237,6 +260,26 @@ const Cookies = () => {
                       value={bannerConfig.position}
                       onChange={onChange}
                       name="position"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label>Border</label>
+                    <input
+                      type="text"
+                      className="glow__input w-100"
+                      value={bannerConfig.border}
+                      onChange={onChange}
+                      name="border"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label>hideAfterClick</label>
+                    <input
+                      type="text"
+                      className="glow__input w-100"
+                      value={bannerConfig.hideAfterClick}
+                      onChange={onChange}
+                      name="hideAfterClick"
                     />
                   </div>
 
@@ -325,11 +368,56 @@ const Cookies = () => {
                     </div>
                   </div>
                   <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">Open <FiChevronDown className="ms-1" /></button>
+                    <button type='button' className="glow__btn__dark w-100">
+                      {
+                        !trackingScripts
+                          ? 'Open'
+                          : 'Close'
+                      }
+                      {
+                        trackingScripts
+                          ? <FiChevronUp className="ms-1" />
+                          : <FiChevronDown className="ms-1" />
+                      }
+                    </button>
                   </div>
                 </div>
                 <Collapse isOpened={trackingScripts}>
-
+                  <div className="my-3">
+                    <div className="mb-3">
+                      <label>Google Analytics tracking code</label>
+                      <input
+                        type="text"
+                        className="glow__input w-100"
+                        value={bannerConfig.analytics}
+                        onChange={onChange}
+                        name="analytics"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Facebook pixel tracking code</label>
+                      <input
+                        type="text"
+                        className="glow__input w-100"
+                        value={bannerConfig.facebook}
+                        onChange={onChange}
+                        name="facebook"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Hotjar tracking code</label>
+                      <input
+                        type="text"
+                        className="glow__input w-100"
+                        value={bannerConfig.hotjar}
+                        onChange={onChange}
+                        name="hotjar"
+                      />
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <button type="submit" className="glow__btn w-100">Update cookies banner</button>
+                  </div>
                 </Collapse>
 
               </form>

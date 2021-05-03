@@ -40,7 +40,7 @@ const CookiesPreview = ({ account }) => {
         <div className="mb-2 d-flex justify-content-between">
           <span>Cookies Rejected</span>
           <span>
-            <small className={`me-2 ${wdata && wdata.percentRejected < 0 ? 'text-danger' : 'text-success'}`}>
+            <small className={`me-2 ${wdata && wdata.percentRejected > 0 ? 'text-danger' : 'text-success'}`}>
               ({wdata && wdata.percentRejected})
             </small>
             {wdata?.rejected}
