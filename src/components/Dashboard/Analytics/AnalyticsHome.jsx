@@ -142,6 +142,7 @@ const AnalyticsHome = () => {
             <TopCountries
               title='Top countries'
               data={views.topCountries}
+              link="/audience"
             />
           </div>
           <div className="col-lg-4">
@@ -155,6 +156,7 @@ const AnalyticsHome = () => {
             <TopBrowsers
               title='Top browsers'
               data={views.topBrowsers}
+              link="/audience"
             />
           </div>
           <div className="col-lg-4">

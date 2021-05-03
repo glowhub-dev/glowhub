@@ -44,7 +44,7 @@ const OnlineViews = ({ account }) => {
                 ? onlineViews?.pages.sort((a, b) => a[1] - b[1]).slice(-3).map(page => {
                   return (
                     <small className="glow__muted d-block" key={page[0].path}>
-                      {page[0].title.slice(0, 15)}{page[0].title.length > 10 && '...'} -  /{page[0].path.slice(-10)}
+                      {page[0].title.slice(0, 15)}{page[0].title.length > 10 && '...'} - {page[0].path.slice(-10)}
                     </small>)
                 })
                 : <small className="glow__muted d-block">There are no online users at this moment.</small>
