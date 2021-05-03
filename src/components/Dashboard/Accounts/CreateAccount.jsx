@@ -30,10 +30,10 @@ const CreateAccount = () => {
   }
 
   const onChange = (e) => {
-    setformData({
-      ...formData,
+    setformData((prevState) => ({
+      ...prevState,
       [e.target.name]: e.target.value
-    })
+    }))
   }
 
   return (

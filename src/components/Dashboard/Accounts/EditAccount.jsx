@@ -34,7 +34,7 @@ const EditAccount = () => {
   }, [id])
 
   const onChange = (e) => {
-    setAccount({ ...account, [e.target.name]: e.target.value })
+    setAccount((prevstate) => ({ ...prevstate, [e.target.name]: e.target.value }))
   }
 
   const onSubmit = async (e) => {

@@ -9,6 +9,7 @@ import { getAnalyticsHomeWidget } from '../../services/ViewsService';
 import AnalyticsPreview from './widgets/AnalyticsPreview'
 import CookiesPreview from './widgets/CookiesPreview';
 import FeedBackPreview from './widgets/FeedBackPreview'
+import { FiExternalLink } from 'react-icons/fi';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
@@ -94,6 +95,24 @@ const Home = () => {
           </div>
           <div className="col-lg-4">
             <FeedBackPreview account={account} />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5">
+        <div className="mb-4">
+          <h3 className="mb-0">Discover</h3>
+          <p className="glow__muted">Discover the latest products</p>
+        </div>
+
+        <div className="row g-2 g-md-3">
+          <div className="col-lg-4">
+            <div className="card__dashboard card__hoverable p-4" style={{ height: '150px' }}>
+              <div className="h-100 d-flex flex-column justify-content-between">
+                <small><FiExternalLink /> dev.to</small>
+                <h5>My top 3 Useful Hacks for Working from Home</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>

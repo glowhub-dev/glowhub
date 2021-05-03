@@ -48,6 +48,11 @@ h1 {
   border-radius: 1rem;
   text-decoration: none;
   color: #fff;
+
+  &:hover {
+    text-decoration: none;
+    color: #fff !important;
+  }
 }
 
 .card__hoverable {
@@ -58,7 +63,7 @@ h1 {
 
   &:hover {
     text-decoration: none;
-    color: #fff;
+    color: #fff !important;
     background-color: #181818;
   }
 }
@@ -236,4 +241,11 @@ h1 {
   border: 1px solid #bebebe;
   border-radius: 0.5rem;
   padding: 0.65rem 1rem;
+}
+
+.discover__picks {
+  overflow-x: hidden;
+  background-color: #00abe6;
+  height: 150px;
+  width: 100vw;
 }

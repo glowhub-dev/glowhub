@@ -135,7 +135,7 @@ const AnalyticsHome = () => {
       </div>
 
       <div className="mt-4">
-        <h3>Audience</h3>
+        <h3 className="m-0">Audience</h3>
         <p className="glow__muted">Audience overview</p>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
