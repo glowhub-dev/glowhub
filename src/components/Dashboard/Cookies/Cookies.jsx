@@ -7,7 +7,7 @@ import { getTotalCookiesWidget, updateBanner, getBanner } from '../../../service
 import CookiesBannerPreview from '../widgets/CookiesBannerPreview'
 import toast from 'react-hot-toast'
 import { Collapse } from 'react-collapse';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import ColapseCard from './ColapseCard'
 
 const toastConfig = {
   style: {
@@ -120,167 +120,150 @@ const Cookies = () => {
               bannerConfig &&
               <form onSubmit={onSubmit}>
 
-                <div onClick={handleTextCollapse} className="card__dashboard__sm p-3 mb-2 d-block d-lg-flex justify-content-between align-items-center">
-                  <div className="d-flex align-items-center">
-                    <div className="acc__avatar" style={{ backgroundColor: '#35363a' }}></div>
-                    <div>
-                      <h6 className="m-0">Text config</h6>
-                      <small className="glow__muted d-block">Change heading, description, buttons, etc.</small>
-                    </div>
-                  </div>
-                  <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">
-                      {
-                        !textCollapse
-                          ? 'Open'
-                          : 'Close'
-                      }
-                      {
-                        textCollapse
-                          ? <FiChevronUp className="ms-1" />
-                          : <FiChevronDown className="ms-1" />
-                      }
-                    </button>
-                  </div>
-                </div>
+                <ColapseCard
+                  handleClick={handleTextCollapse}
+                  state={textCollapse}
+                  title='Text config'
+                  description='Change heading, description, buttons, etc.'
+                />
                 <Collapse isOpened={textCollapse}>
-                  <div className="mb-3">
-                    <label>Heading</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
-                      value={bannerConfig.heading}
-                      onChange={onChange}
-                      name='heading'
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label>Description</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
-                      value={bannerConfig.description}
-                      onChange={onChange}
-                      name="description"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label>Policy link</label>
-                    <input
-                      type="url"
-                      className="glow__input w-100"
-                      value={bannerConfig.policyLink}
-                      onChange={onChange}
-                      name="policyLink"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label>Policy link text</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
-                      value={bannerConfig.policyLinkText}
-                      onChange={onChange}
-                      name="policyLinkText"
-                    />
-                  </div>
-                  <div className="mb-3 row">
-                    <div className="col">
-                      <label>Accept text</label>
+                  <div className="my-4">
+                    <div className="mb-3">
+                      <label>Heading</label>
                       <input
                         type="text"
                         className="glow__input w-100"
-                        value={bannerConfig.acceptBtnText}
+                        value={bannerConfig.heading}
                         onChange={onChange}
-                        name="acceptBtnText"
+                        name='heading'
                       />
                     </div>
-                    <div className="col">
-                      <label>Reject text</label>
+                    <div className="mb-3">
+                      <label>Description</label>
                       <input
                         type="text"
                         className="glow__input w-100"
-                        value={bannerConfig.rejectBtnText}
+                        value={bannerConfig.description}
                         onChange={onChange}
-                        name="rejectBtnText"
+                        name="description"
                       />
                     </div>
-                  </div>
+                    <div className="mb-3">
+                      <label>Policy link</label>
+                      <input
+                        type="url"
+                        className="glow__input w-100"
+                        value={bannerConfig.policyLink}
+                        onChange={onChange}
+                        name="policyLink"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Policy link text</label>
+                      <input
+                        type="text"
+                        className="glow__input w-100"
+                        value={bannerConfig.policyLinkText}
+                        onChange={onChange}
+                        name="policyLinkText"
+                      />
+                    </div>
+                    <div className="mb-3 row">
+                      <div className="col">
+                        <label>Accept text</label>
+                        <input
+                          type="text"
+                          className="glow__input w-100"
+                          value={bannerConfig.acceptBtnText}
+                          onChange={onChange}
+                          name="acceptBtnText"
+                        />
+                      </div>
+                      <div className="col">
+                        <label>Reject text</label>
+                        <input
+                          type="text"
+                          className="glow__input w-100"
+                          value={bannerConfig.rejectBtnText}
+                          onChange={onChange}
+                          name="rejectBtnText"
+                        />
+                      </div>
+                      <div className="my-4">
+                        <button type="submit" className="glow__btn w-100">Update cookies banner</button>
+                      </div>
+                    </div>
 
-                  <div className="mb-3">
-                    <button type="submit" className="glow__btn w-100">Update cookies banner</button>
                   </div>
                 </Collapse>
 
-
-                <div onClick={handleStylesCollapse} className="card__dashboard__sm p-3 mb-2 d-block d-lg-flex justify-content-between align-items-center">
-                  <div className="d-flex align-items-center">
-                    <div className="acc__avatar" style={{ backgroundColor: '#35363a' }}></div>
-                    <div>
-                      <h6 className="m-0">Customize banner styles</h6>
-                      <small className="glow__muted d-block">
-                        Change backgrounds, text colors, style, etc.</small>
-                    </div>
-                  </div>
-                  <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">
-                      {
-                        !stylesCollapse
-                          ? 'Open'
-                          : 'Close'
-                      }
-                      {
-                        stylesCollapse
-                          ? <FiChevronUp className="ms-1" />
-                          : <FiChevronDown className="ms-1" />
-                      }
-                    </button>
-                  </div>
-                </div>
+                <ColapseCard
+                  handleClick={handleStylesCollapse}
+                  state={stylesCollapse}
+                  title='Customize banner styles'
+                  description='Change backgrounds, text colors, style, etc.'
+                />
                 <Collapse isOpened={stylesCollapse}>
                   <div className="mt-4">
                     <p className="glow__muted">Banner styles</p>
                     <hr />
                   </div>
                   <div className="mb-3">
-                    <label>Banner style</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
+                    <label htmlFor="bannerStyle">Banner style</label>
+                    <select
+                      className="glow__select w-100 mt-2"
+                      aria-label="Banner style"
+                      onChange={onChange}
                       value={bannerConfig.bannerStyle}
-                      onChange={onChange}
                       name="bannerStyle"
-                    />
+                      id="bannerStyle"
+                    >
+                      <option value="1">Rounded</option>
+                      <option value="2">Rounded small</option>
+                      <option value="3">Square</option>
+                    </select>
                   </div>
                   <div className="mb-3">
-                    <label>Position</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
+                    <label htmlFor="position">Position</label>
+                    <select
+                      className="glow__select w-100 mt-2"
+                      aria-label="Position"
+                      onChange={onChange}
                       value={bannerConfig.position}
-                      onChange={onChange}
                       name="position"
-                    />
+                      id="position"
+                    >
+                      <option value="left">Bottom left</option>
+                      <option value="right">Bottom right</option>
+                    </select>
                   </div>
                   <div className="mb-3">
-                    <label>Border</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
+                    <label htmlFor="border">Border</label>
+                    <select
+                      className="glow__select w-100 mt-2"
+                      aria-label="Border"
+                      onChange={onChange}
                       value={bannerConfig.border}
-                      onChange={onChange}
                       name="border"
-                    />
+                      id="border"
+                    >
+                      <option value="border">Yes</option>
+                      <option value="none">No</option>
+                    </select>
                   </div>
                   <div className="mb-3">
-                    <label>hideAfterClick</label>
-                    <input
-                      type="text"
-                      className="glow__input w-100"
-                      value={bannerConfig.hideAfterClick}
+                    <label htmlFor="hideAfterClick">Hide banner after click</label>
+                    <select
+                      className="glow__select w-100 mt-2"
+                      aria-label="hideAfterClick"
                       onChange={onChange}
+                      value={bannerConfig.hideAfterClick}
                       name="hideAfterClick"
-                    />
+                      id="hideAfterClick"
+                    >
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
                   </div>
 
                   <div className="mt-4">
@@ -354,34 +337,17 @@ const Cookies = () => {
                     </div>
                   </div>
 
-                  <div className="mb-3">
+                  <div className="my-4">
                     <button type="submit" className="glow__btn w-100">Update cookies banner</button>
                   </div>
                 </Collapse>
 
-                <div onClick={handleTrackingScripts} className="card__dashboard__sm p-3 mb-2 d-block d-lg-flex justify-content-between align-items-center">
-                  <div className="d-flex align-items-center">
-                    <div className="acc__avatar" style={{ backgroundColor: '#35363a' }}></div>
-                    <div>
-                      <h6 className="m-0">Tracking scripts</h6>
-                      <small className="glow__muted d-block">Change analytics, hotjar or custom scripts.</small>
-                    </div>
-                  </div>
-                  <div className="mt-3 mt-lg-0">
-                    <button type='button' className="glow__btn__dark w-100">
-                      {
-                        !trackingScripts
-                          ? 'Open'
-                          : 'Close'
-                      }
-                      {
-                        trackingScripts
-                          ? <FiChevronUp className="ms-1" />
-                          : <FiChevronDown className="ms-1" />
-                      }
-                    </button>
-                  </div>
-                </div>
+                <ColapseCard
+                  handleClick={handleTrackingScripts}
+                  state={trackingScripts}
+                  title='Tracking scripts'
+                  description='Change analytics, hotjar or custom scripts.'
+                />
                 <Collapse isOpened={trackingScripts}>
                   <div className="my-3">
                     <div className="mb-3">
@@ -415,7 +381,7 @@ const Cookies = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-3">
+                  <div className="my-4">
                     <button type="submit" className="glow__btn w-100">Update cookies banner</button>
                   </div>
                 </Collapse>
@@ -428,7 +394,6 @@ const Cookies = () => {
           </div>
         </div>
       </div>
-
     </Dashboard>
   )
 }
