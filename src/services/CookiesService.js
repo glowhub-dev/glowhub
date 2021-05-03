@@ -9,3 +9,11 @@ export const getCookiesWidget = (account) => {
 export const getTotalCookiesWidget = (account) => {
   return http.get(`/cookies/gettotaldata/${account}`)
 }
+
+export const getBanner = (account) => {
+  return http.get(`/cookies/banner/${account}`)
+}
+
+export const updateBanner = (account, body) => {
+  return http.put(`/cookies/config/${account}`, body)
+}

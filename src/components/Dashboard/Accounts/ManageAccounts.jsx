@@ -40,8 +40,8 @@ const ManageAccounts = () => {
   return (
     <Dashboard>
       <div className="row justify-content-between align-items-end mb-3">
-        <div className="col-sm-8">
-          <h1>Manage accounts</h1>
+        <div className="col-sm-8 mb-3">
+          <h1 className="mb-0">Manage accounts</h1>
           <p className="glow__muted mb-0">Good to see you again, {user && user.name.split(' ')[0]}</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
