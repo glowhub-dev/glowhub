@@ -41,7 +41,7 @@ const AnalyticsHome = () => {
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-4">
           <h1 className="mb-0">Glow Analytics</h1>
-          <p className="glow__muted">Create account to start using GlowHub</p>
+          <p className="glow__muted">Web analytics with improved users privacy</p>
         </div>
         <div className="col-sm-8 text-left text-sm-end d-flex justify-content-start justify-content-md-end flex-wrap pb-3">
           <select

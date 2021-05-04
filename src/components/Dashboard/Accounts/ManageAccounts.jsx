@@ -14,16 +14,18 @@ const ManageAccounts = () => {
   const { user } = useContext(AuthContext)
   const [createModal, setcreateModal] = useState(false)
   const togglecreateModal = () => { setcreateModal(!createModal) }
+  const [accCode, setAccCode] = useState()
 
   const [showCode, setshowCode] = useState(false)
-  const toggleShowCode = () => { setshowCode(!showCode) }
-  const codeString = `<script src="https://cdn.jsdelivr.net/gh/manucaralmo/GlowCookies@3.1.1/src/glowCookies.min.js"></script>
-  <script>
-      glowCookies.start('en', { 
-          style: 1,
-          analytics: 'G-FH87DE17XF'
-      });
-  </script>`
+  const toggleShowCode = (code) => {
+    setshowCode(!showCode)
+    setAccCode(code)
+  }
+  const codeString = `<script src="https://cdn.jsdelivr.net/gh/glowhub-dev/glowhub-scripts@0.9/glowHub.min.js"></script>
+<script> 
+  glowHubScript.init('${accCode}'); 
+</script>`
+
   const toastConfig = {
     style: {
       borderRadius: '10px',
@@ -63,7 +65,7 @@ const ManageAccounts = () => {
                 </div>
                 <div className="mt-3 mt-lg-0">
                   <Link to={`/edit-account/${acc.id}`} className="glow__btn__dark me-2">Edit</Link>
-                  <button onClick={toggleShowCode} className="glow__btn__dark">Code</button>
+                  <button onClick={() => toggleShowCode(acc.clientID)} className="glow__btn__dark">Code</button>
                 </div>
               </div>
             </div>
@@ -83,7 +85,7 @@ const ManageAccounts = () => {
         <Popup close={toggleShowCode}>
           <div className="mb-4">
             <h3 className="mb-0">Your script</h3>
-            <p>Copy & paste this code snnipet to your html body tag.</p>
+            <p>Copy & paste this code snnipet to your html head or body tag.</p>
           </div>
 
           <SyntaxHighlighter language="javascript" style={atomDark}>
