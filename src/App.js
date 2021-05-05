@@ -16,6 +16,7 @@ import Audience from './components/Dashboard/Analytics/Audience';
 import Online from './components/Dashboard/Analytics/Online';
 import ResetPassword from './components/Login/ResetPassword';
 import ChangePassword from './components/Login/ChangePassword';
+import Plan from './components/Dashboard/Accounts/Plan';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <PrivateRoute exact path="/cookies" component={Cookies} />
         <PrivateRoute exact path="/feedback" component={Feedback} />
         <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/plan" component={Plan} />
 
         {/* 404 Route */}
         <Route path="*" component={Error404} />

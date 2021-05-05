@@ -131,7 +131,7 @@ const EditAccount = () => {
                 <div onClick={togglePicker} className="me-2" style={{ height: '35px', width: '35px', borderRadius: '0.5rem', backgroundColor: account.color }}></div>
                 <button type="button" className="glow__btn__dark" onClick={togglePicker}>
                   Change color
-            </button>
+                </button>
               </div>
             </div>
 

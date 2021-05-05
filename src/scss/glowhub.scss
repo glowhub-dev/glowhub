@@ -20,6 +20,11 @@ $body-color: rgb(245, 245, 245);
 
 body {
   font-family: 'Open Sans', sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,6 +130,25 @@ h1 {
   &:hover {
     background-color:  #b9b9b9;
     color: #000;
+  }
+}
+
+.glow__btn__blue {
+  background-image: linear-gradient(270deg, #00DADA 0%, #0F7CE6 100%);
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: bolder;
+  padding: 0.6rem 1rem;
+  letter-spacing: -0.15px;
+  transition: .15s;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  display: block;
+  text-align: center;
+
+  &:hover {
+    background-image: linear-gradient(270deg, #00adad 0%, #0e68c2 100%);
+    color: rgb(255, 255, 255);
   }
 }
 

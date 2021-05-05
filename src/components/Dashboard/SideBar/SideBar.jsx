@@ -29,7 +29,7 @@ const SideBar = () => {
           <NavLink to="/manage-accounts" activeClassName="active"><FiGrid className="me-1" /> Manage accounts</NavLink>
           <NavLink to="/settings"><FiSettings className="me-1" /> Settings</NavLink>
           <NavLink to="/profile"><FiUser className="me-1" /> Profile</NavLink>
-          <NavLink to="/plans"><FiCreditCard className="me-1" /> Plan & billing</NavLink>
+          <NavLink to="/plan"><FiCreditCard className="me-1" /> Plan & billing</NavLink>
         </div>
 
       </div>

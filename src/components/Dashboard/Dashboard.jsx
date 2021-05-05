@@ -36,7 +36,7 @@ const Dashboard = ({ children }) => {
       {
         changeAccountModal
         && <Popup close={togglechangeAccount}>
-          <h3>Your accounts</h3>
+          <h3 className="mb-0">Your accounts</h3>
           <p className="glow__muted mb-4">These are your available accounts</p>
 
           {user?.accounts.map(acc => {

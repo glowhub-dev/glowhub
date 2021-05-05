@@ -95,6 +95,7 @@ const Profile = () => {
                 value={userForm?.password}
                 onChange={onChange}
               />
+              <small className="glow__muted">Leave blank to not change the password</small>
             </div>
             <div className="mb-3 mt-4">
               <button className="glow__btn px-3">Save account changes</button>
