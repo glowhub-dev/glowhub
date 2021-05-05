@@ -17,3 +17,11 @@ export const getAccount = (id) => {
 export const deleteAccount = (id) => {
   return http.delete(`/accounts/delete/${id}`)
 }
+
+export const createCheckout = (body) => {
+  return http.post(`/create-checkout-session`, body)
+}
+
+export const cancelSubscription = (body) => {
+  return http.post(`/cancel-subs`, body)
+}

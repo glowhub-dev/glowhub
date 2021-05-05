@@ -1,22 +1,57 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { FaArrowRight } from 'react-icons/fa'
+import toast from 'react-hot-toast'
+import { useLocation } from 'react-router'
 import { AuthContext } from '../../../contexts/AuthContext'
 import useAccount from '../../../hooks/useAccount'
 import Dashboard from '../Dashboard'
+import CheckoutForm from './Stripe/CheckoutForm'
+import { cancelSubscription } from '../../../services/AccountService'
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import { CardNumberElement } from '@stripe/react-stripe-js';
-const stripePromise = loadStripe('pk_test_aKXAngMXOasC99dapoLzwS5500SAkrz1IT');
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+const toastConfig = {
+  style: {
+    borderRadius: '10px',
+    background: '#333',
+    color: '#fff',
+  },
+}
+const successToast = () => toast.success('Account updated successfully', toastConfig)
+const errorToast = () => toast.error('An error has occurred', toastConfig)
 
 const Plan = () => {
-  const { user } = useContext(AuthContext)
+  const { user, getUser } = useContext(AuthContext)
+  const [loading, setLoading] = useState(false)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
+  const query = useQuery()
+  const success = query.get("success")
+  const canceled = query.get("canceled")
+
+  useEffect(() => {
+    success && successToast()
+    canceled && errorToast()
+  }, [success, canceled])
 
   useEffect(() => {
     user && account && setfullAccount(user?.accounts.filter(a => account === a.clientID)[0])
   }, [account, user])
+
+  const cancelSubs = async () => {
+    if (fullAccount) {
+      setLoading(true)
+      try {
+        await cancelSubscription({ subs: fullAccount.stripe.subscription })
+        getUser()
+        successToast()
+      } catch (e) {
+        errorToast()
+      }
+      setLoading(false)
+    }
+  }
 
   return (
     <Dashboard>
@@ -44,7 +79,7 @@ const Plan = () => {
 
       <div className="mt-4">
         <div className="row g-3 g-lg-4 mb-4">
-          <div className="col-lg-3">
+          <div className="col-lg-4 col-xl-3">
             <div className="card__dashboard p-4" style={{ border: '2px solid #1c1c1c' }}>
               {
                 fullAccount?.billing_plan === 'free'
@@ -64,7 +99,7 @@ const Plan = () => {
               <small className="d-block glow__muted">Up to 3.000 actions/month</small>
             </div>
           </div>
-          <div className="col-lg-7">
+          <div className="col-lg-8 col-xl-7">
             <div className="card__dashboard p-4 h-100 d-flex flex-column justify-content-between" style={{ border: '2px solid #00ace5' }}>
               <div>
                 {
@@ -79,7 +114,7 @@ const Plan = () => {
                     <p className="glow__muted m-0">Monthly pricing for projects and teams of all sizes.</p>
                   </div>
                   <div>
-                    <h3>$9,99/mes</h3>
+                    <h3>9,99€/mes</h3>
                   </div>
                 </div>
                 <hr />
@@ -94,18 +129,15 @@ const Plan = () => {
 
               {
                 fullAccount?.billing_plan === 'free'
-                  ? <button className="glow__btn__blue mt-3 w-100">
-                    Become unlimited <FaArrowRight className="ms-2" style={{ marginTop: '-4px' }} />
-                  </button>
-                  : <button className="glow__btn__dark mt-3 w-100">
-                    Cancel subscription
+                  ? <CheckoutForm />
+                  : <button className="glow__btn__dark mt-3 w-100" onClick={cancelSubs}>
+                    {loading ? 'Loading...' : 'Cancel subscription'}
                   </button>
               }
 
             </div>
           </div>
         </div>
-
         <div>
           <p className="mb-0 glow__muted">This is the plan corresponding to the {fullAccount?.name} account.</p>
           <p className="mb-0 glow__muted">Each plan corresponds to a single account and resources cannot be shared between them.</p>
@@ -116,24 +148,6 @@ const Plan = () => {
         </div>
       </div>
 
-      <Elements stripe={stripePromise}>
-        <CardNumberElement
-          options={{
-            style: {
-              base: {
-                fontSize: '16px',
-                color: '#fff',
-                '::placeholder': {
-                  color: '#aab7c4',
-                },
-              },
-              invalid: {
-                color: '#9e2146',
-              },
-            },
-          }}
-        />
-      </Elements>
     </Dashboard>
   )
 }
