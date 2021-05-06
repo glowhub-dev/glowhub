@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { FiBarChart } from "react-icons/fi"
+import { FiPieChart } from "react-icons/fi"
 import { Link } from 'react-router-dom'
 import { getAnalyticsHomeWidget } from '../../../services/ViewsService'
 import MiniChart from '../charts/MiniChart'
@@ -37,7 +37,7 @@ const AnalyticsPreview = ({ account }) => {
           className="card__dashboard card__hoverable p-4"
         >
           <div className="glow__muted d-flex justify-content-between">
-            <FiBarChart />
+            <FiPieChart />
             <span>Glow Analytics</span>
           </div>
           <div className="mt-3 mb-0 d-flex justify-content-between">
