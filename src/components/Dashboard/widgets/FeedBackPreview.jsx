@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import MiniChart from '../charts/MiniChart';
 import { getFeedbackWidget } from '../../../services/FeedbackService';
 import ReactTooltip from 'react-tooltip';
+import { feedbackPreviewData } from '../SampleData/sampleData';
 
-const FeedBackPreview = ({ account }) => {
+const FeedBackPreview = ({ account, user }) => {
   const [loading, setLoading] = useState(true)
   const [wdata, setwdata] = useState({})
 
@@ -20,6 +21,13 @@ const FeedBackPreview = ({ account }) => {
         console.log(e)
       })
   }, [account])
+
+  useEffect(() => {
+    if (!account && user?.accounts.length <= 0) {
+      setwdata(feedbackPreviewData)
+      setLoading(false)
+    }
+  }, [account, user])
 
   return (
     !loading

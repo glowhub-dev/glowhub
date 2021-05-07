@@ -10,12 +10,18 @@ import AnalyticsPreview from './widgets/AnalyticsPreview'
 import CookiesPreview from './widgets/CookiesPreview';
 import FeedBackPreview from './widgets/FeedBackPreview'
 import { FiExternalLink } from 'react-icons/fi';
+import { analyticsPreviewData } from './SampleData/sampleData'
+import Popup from '../Misc/Popup';
+import CreateAccount from './Accounts/CreateAccount';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
   const [views, setViews] = useState({})
+
+  const [createModal, setcreateModal] = useState(false)
+  const togglecreateModal = () => { setcreateModal(!createModal) }
 
   useEffect(() => {
     // Use for chart color
@@ -28,6 +34,11 @@ const Home = () => {
       .catch(e => console.log(e))
   }, [account])
 
+  useEffect(() => {
+    user?.accounts.length <= 0
+      && setViews(analyticsPreviewData)
+  }, [user])
+
   return (
     <Dashboard>
       {
@@ -35,7 +46,7 @@ const Home = () => {
         && <PrimaryCta
           title='Create your fist account'
           desc='To start using GlowHub, create your first account'
-          to='/create-account'
+          btnFunc={togglecreateModal}
           text='Create account'
         />
       }
@@ -67,7 +78,7 @@ const Home = () => {
             <div className="card__dashboard p-2">
               {
                 views?.chart1data
-                  ? <GlowChart data={views.chart1data} color={fullAccount?.color} type="line" />
+                  ? <GlowChart data={views.chart1data} color={fullAccount?.color || '#0fa7e1'} type="line" />
                   : <div className="card__dashboard__loading p-4">
                     <span className="span"> </span>
                     <p className="mt-3"></p>
@@ -76,7 +87,7 @@ const Home = () => {
             </div>
           </div>
           <div className="col-lg-3">
-            <OnlineViews account={account} />
+            <OnlineViews account={account} user={user} />
           </div>
         </div>
       </div>
@@ -88,13 +99,13 @@ const Home = () => {
         </div>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
-            <AnalyticsPreview account={account} />
+            <AnalyticsPreview account={account} user={user} />
           </div>
           <div className="col-lg-4">
-            <CookiesPreview account={account} />
+            <CookiesPreview account={account} user={user} />
           </div>
           <div className="col-lg-4">
-            <FeedBackPreview account={account} />
+            <FeedBackPreview account={account} user={user} />
           </div>
         </div>
       </div>
@@ -116,6 +127,15 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {
+        createModal &&
+        <Popup close={togglecreateModal}>
+          <CreateAccount
+            closeFunc={togglecreateModal}
+          />
+        </Popup>
+      }
 
     </Dashboard>
   )

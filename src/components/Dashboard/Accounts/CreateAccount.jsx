@@ -9,7 +9,7 @@ import { TwitterPicker } from 'react-color'
 const accountCreated = () => toast.success('Account created successfully')
 const errorOn = () => toast.success('An error has occurred')
 
-const CreateAccount = () => {
+const CreateAccount = ({ closeFunc }) => {
   const [formData, setformData] = useState({ name: '', business_name: '', domains: '', color: '#03A9F4' })
   const [showPicker, setShowPicker] = useState(false)
   const { getUser } = useContext(AuthContext)
@@ -30,6 +30,7 @@ const CreateAccount = () => {
       getUser()
       accountCreated()
       push('/dashboard')
+      closeFunc && closeFunc()
     } catch (e) {
       errorOn()
       console.log(e)
@@ -77,7 +78,7 @@ const CreateAccount = () => {
           <label htmlFor="business_name">Domain</label>
           <input
             className="glow__input w-100"
-            type="text"
+            type="url"
             placeholder="https://www.mydomain.com"
             name="domains"
             value={formData.domains}

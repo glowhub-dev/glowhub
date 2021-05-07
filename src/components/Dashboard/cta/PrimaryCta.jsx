@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
 
-const PrimaryCta = ({ title, desc, to, text }) => {
+const PrimaryCta = ({ title, desc, btnFunc, text }) => {
   return (
     <div className="card__banner p-4 mb-4">
       <div className="row justify-content-between align-items-center">
@@ -11,7 +10,7 @@ const PrimaryCta = ({ title, desc, to, text }) => {
           <p className="m-0">{desc}</p>
         </div>
         <div className="col-sm-3">
-          <Link to={to} className="glow__btn w-100">{text}</Link>
+          <button type="button" onClick={btnFunc} className="glow__btn w-100">{text}</button>
         </div>
       </div>
     </div>

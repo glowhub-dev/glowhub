@@ -128,7 +128,7 @@ const AnalyticsHome = () => {
           <div className="col-sm-4 col-lg-3">
             <CustomMiniWidget
               title="Session mean time"
-              data={views.meanTimeInPage && (views.meanTimeInPage / 1000).toFixed(2)}
+              data={views.meanTimeInPage ? ((views.meanTimeInPage || 0) / 1000).toFixed(2) : 0}
             />
           </div>
         </div>

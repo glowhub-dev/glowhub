@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { getCookiesWidget } from '../../../services/CookiesService';
 import MiniChart from '../charts/MiniChart';
 import ReactTooltip from 'react-tooltip';
+import { cookiesPreviewData } from '../SampleData/sampleData';
 
-const CookiesPreview = ({ account }) => {
+const CookiesPreview = ({ account, user }) => {
   const [loading, setLoading] = useState(true)
   const [wdata, setwdata] = useState({})
 
@@ -20,6 +21,13 @@ const CookiesPreview = ({ account }) => {
         console.log(e)
       })
   }, [account])
+
+  useEffect(() => {
+    if (!account && user?.accounts.length <= 0) {
+      setwdata(cookiesPreviewData)
+      setLoading(false)
+    }
+  }, [account, user])
 
   return (
     !loading

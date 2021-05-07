@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getViewsOnlineHomeWidget } from '../../../services/ViewsService'
 import { FiArrowRight } from "react-icons/fi";
 
-const OnlineViews = ({ account }) => {
+const OnlineViews = ({ account, user }) => {
   const [onlineViews, setOnlineViews] = useState()
   const [loading, setLoading] = useState(true)
 
@@ -29,6 +29,13 @@ const OnlineViews = ({ account }) => {
       return () => clearInterval(interval);
     }
   }, [account, getViews])
+
+  useEffect(() => {
+    if (!account && user?.accounts.length <= 0) {
+      setOnlineViews({ pages: [], totalUsers: 34 })
+      setLoading(false)
+    }
+  }, [account, user])
 
   return (
     !loading

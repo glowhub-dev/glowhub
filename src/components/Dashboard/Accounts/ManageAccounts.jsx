@@ -9,6 +9,7 @@ import CreateAccount from './CreateAccount';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import toast from 'react-hot-toast';
+import PrimaryCta from '../cta/PrimaryCta';
 
 const ManageAccounts = () => {
   const { user } = useContext(AuthContext)
@@ -51,6 +52,16 @@ const ManageAccounts = () => {
         </div>
       </div>
 
+      {
+        user?.accounts.length <= 0
+        && <PrimaryCta
+          title='Create your fist account'
+          desc='To start using GlowHub, create your first account'
+          btnFunc={togglecreateModal}
+          text='Create account'
+        />
+      }
+
       <div className="row row-cols-1 row-cols-sm-2 g-2 g-md-3 mt-4">
         {user?.accounts.map(acc => {
           return (
@@ -76,7 +87,9 @@ const ManageAccounts = () => {
       {
         createModal &&
         <Popup close={togglecreateModal}>
-          <CreateAccount />
+          <CreateAccount
+            closeFunc={togglecreateModal}
+          />
         </Popup>
       }
 

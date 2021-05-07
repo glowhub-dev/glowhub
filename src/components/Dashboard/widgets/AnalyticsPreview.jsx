@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import { getAnalyticsHomeWidget } from '../../../services/ViewsService'
 import MiniChart from '../charts/MiniChart'
 import ReactTooltip from 'react-tooltip';
+import { analyticsPreviewData } from '../SampleData/sampleData'
 
-const AnalyticsPreview = ({ account }) => {
+const AnalyticsPreview = ({ account, user }) => {
   const [views, setViews] = useState()
   const [loading, setLoading] = useState(true)
 
@@ -25,8 +26,13 @@ const AnalyticsPreview = ({ account }) => {
   }, [account])
 
   useEffect(() => {
-    if (account) { getViews() }
-  }, [account, getViews])
+    if (account) {
+      getViews()
+    } else if (user?.accounts.length <= 0) {
+      setViews(analyticsPreviewData)
+      setLoading(false)
+    }
+  }, [account, getViews, user])
 
 
   return (
