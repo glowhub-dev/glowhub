@@ -114,7 +114,7 @@ const Plan = () => {
                     <p className="glow__muted m-0">Monthly pricing for projects and teams of all sizes.</p>
                   </div>
                   <div>
-                    <h3>9,99€/mes</h3>
+                    <h3>9,99€/month</h3>
                   </div>
                 </div>
                 <hr />

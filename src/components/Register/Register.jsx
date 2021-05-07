@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { FaCheckCircle, FaGithub } from 'react-icons/fa'
 import { useHistory } from 'react-router'
 import { AuthContext } from '../../contexts/AuthContext'
 import { register } from '../../services/AuthService'
@@ -70,23 +71,23 @@ const Register = () => {
         <div className="row align-items-center justify-content-center">
           <div className="col-md-5 order-3 order-md-1">
             <div className="custom__card">
-              <h4>Instant static deploys</h4>
-              <p className="glow__muted mb-4">Push to git and your website is live. Zero configuration required.</p>
+              <h4><FaCheckCircle className="me-1" style={{ marginTop: '-3px' }} /> Only one script</h4>
+              <p className="glow__muted mb-4">Install one script and use all the tools.</p>
 
-              <h4>Instant static deploys</h4>
-              <p className="glow__muted mb-4">Push to git and your website is live. Zero configuration required.</p>
+              <h4><FaCheckCircle className="me-1" style={{ marginTop: '-3px' }} /> Zero configuration</h4>
+              <p className="glow__muted mb-4">Register your website at glowhub and we will take care of the rest.</p>
 
-              <h4>Instant static deploys</h4>
-              <p className="glow__muted mb-4">Push to git and your website is live. Zero configuration required.</p>
+              <h4><FaCheckCircle className="me-1" style={{ marginTop: '-3px' }} /> Easy to use</h4>
+              <p className="glow__muted mb-4">Choose your tools and customize them directly from the app.</p>
 
-              <h4>Instant static deploys</h4>
-              <p className="glow__muted">Push to git and your website is live. Zero configuration required.</p>
+              <h4><FaCheckCircle className="me-1" style={{ marginTop: '-3px' }} /> Privacy-based</h4>
+              <p className="glow__muted">Users choose whether or not they want to grant tracking permission.</p>
             </div>
           </div>
           <div className="col-md-1 order-2"></div>
           <div className="col-md-5 order-1 order-md-3 mb-5 mb-md-0">
             <h1 className="m-0 p-0">Welcome</h1>
-            <p className="glow__muted">Good to see you again, Manuel</p>
+            <p className="glow__muted">Get started today for free</p>
 
             <form onSubmit={onSubmit} style={{ maxWidth: '30rem' }}>
               <div className="mt-4">
@@ -126,14 +127,13 @@ const Register = () => {
                 />
               </div>
               <div className="mt-4">
-                <label>
-                  <input type="checkbox" className="glow__checkbox" value="first_checkbox" />
-                  Subscribe to newsletter
-                </label>
-              </div>
-              <div className="mt-5">
                 <button type="submit" className="glow__btn w-100">{!loading ? 'Register now' : 'Loading...'}</button>
               </div>
+
+              <hr className="mt-4" />
+              <a href={`${process.env.REACT_APP_BASE_URL}/github-auth`} className="glow__btn__github w-100 mt-3">
+                <FaGithub className="me-2" /> Login with Github
+              </a>
             </form>
 
           </div>
