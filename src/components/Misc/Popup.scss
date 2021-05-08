@@ -23,6 +23,20 @@
     border: 1px solid rgb(49, 49, 49);
     overflow: auto;
     animation: openModal 0.15s;
+
+    .close__popup {
+      cursor: pointer;
+      border: 1px solid #000;
+      border-radius: 1rem;
+      padding: 1px 5px 2px 5px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+
+      &:hover{
+        border: 1px solid rgb(87, 87, 87);
+      }
+    }
   }
 }
 

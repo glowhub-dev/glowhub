@@ -120,7 +120,7 @@ const Login = () => {
                 type="email"
                 className="glow__input w-100"
                 id="email"
-                placeholder="manucaralmo@gmail.com"
+                placeholder="Enter your email"
                 name="email"
                 onChange={onChange}
                 value={loginForm.email}
