@@ -82,7 +82,7 @@ const Plan = () => {
           <div className="col-lg-4 col-xl-3">
             <div className="card__dashboard p-4" style={{ border: '2px solid #1c1c1c' }}>
               {
-                fullAccount?.billing_plan === 'free'
+                fullAccount?.billing_plan !== 'pro'
                 && <small>Your current plan</small>
               }
               <h2>Free plan</h2>
@@ -103,7 +103,7 @@ const Plan = () => {
             <div className="card__dashboard p-4 h-100 d-flex flex-column justify-content-between" style={{ border: '2px solid #00ace5' }}>
               <div>
                 {
-                  fullAccount?.billing_plan === 'free'
+                  fullAccount?.billing_plan !== 'pro'
                     ? <small>Recomended option</small>
                     : <small>Your current plan</small>
                 }
@@ -128,7 +128,7 @@ const Plan = () => {
               </div>
 
               {
-                fullAccount?.billing_plan === 'free'
+                fullAccount?.billing_plan !== 'pro'
                   ? <CheckoutForm />
                   : <button className="glow__btn__dark mt-3 w-100" onClick={cancelSubs}>
                     {loading ? 'Loading...' : 'Cancel subscription'}

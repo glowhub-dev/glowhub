@@ -20,8 +20,8 @@ const CookiesBannerPreview = ({ banner }) => {
               rel="noreferrer"
               className="read__more"
               style={{ color: banner?.color }}
-            >Read more about cookies
-        </a>
+            >{banner.policyLinkText}
+            </a>
           </p>
           <div className="btn__section">
             <button

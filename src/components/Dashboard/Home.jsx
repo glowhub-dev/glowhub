@@ -113,7 +113,7 @@ const Home = () => {
       <div className="mt-5">
         <div className="mb-4">
           <h3 className="mb-0">Discover</h3>
-          <p className="glow__muted">Discover the latest products</p>
+          <p className="glow__muted">Learn how to use glowhub and discover new features</p>
         </div>
 
         <div className="row g-2 g-md-3">
