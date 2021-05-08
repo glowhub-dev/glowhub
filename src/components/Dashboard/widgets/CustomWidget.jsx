@@ -57,7 +57,7 @@ const CustomWidget = ({ title, data, link }) => {
 
 CustomWidget.propTypes = {
   title: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired
+  link: PropTypes.string
 }
 
 export default CustomWidget

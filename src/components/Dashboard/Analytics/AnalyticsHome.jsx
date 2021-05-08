@@ -166,7 +166,7 @@ const AnalyticsHome = () => {
               link="/audience"
             />
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-8">
             <CustomWidget
               title='Top traffic sources'
               data={views.topRefDomains}

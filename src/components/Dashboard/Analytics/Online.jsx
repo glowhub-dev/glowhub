@@ -67,7 +67,7 @@ const Online = () => {
               <span className="d-block mb-2">Total active pages</span>
               {
                 views?.pages.length > 0
-                  ? views?.pages.sort((a, b) => a[1] - b[1]).map(page => {
+                  ? views?.pages.sort((a, b) => b[1] - a[1]).map(page => {
                     return (
                       <div className="glow__muted d-flex justify-content-between" key={page[0].path}>
                         <div>{page[0].title.slice(0, 45)}{page[0].title.length > 45 && '...'} -  {page[0].path}</div>

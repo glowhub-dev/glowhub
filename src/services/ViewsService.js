@@ -17,3 +17,7 @@ export const getAnalyticsHomeWidget = (account) => {
 export const getViews = ({ account, params }) => {
   return http.get(`/analytics/getFullViews/${account}`, { params })
 }
+
+export const getTotalAudicence = ({ account, params }) => {
+  return http.get(`/analytics/getTotalAudicence/${account}`, { params })
+}
