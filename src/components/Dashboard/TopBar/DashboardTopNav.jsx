@@ -11,7 +11,7 @@ const DashboardTopNav = ({ changeAccount }) => {
         <FiRepeat className="me-1" /> Change account
       </div>
       <div className="nav">
-        <a href="/">Feedback</a>
+        <a href="/profile">Account</a>
         <button onClick={logout}>Logout</button>
       </div>
     </div>

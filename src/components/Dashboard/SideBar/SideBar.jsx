@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './SideBar.scss'
-import { FiHome, FiGrid, FiMessageSquare, FiShield, FiUser, FiSettings, FiCreditCard, FiPieChart } from "react-icons/fi";
+import { FiHome, FiGrid, FiMessageSquare, FiShield, FiUser, FiCreditCard, FiPieChart } from "react-icons/fi";
 
 const SideBar = () => {
   return (
@@ -27,7 +27,7 @@ const SideBar = () => {
         <div className="secction">
           <div className="heading">ACCOUNT</div>
           <NavLink to="/manage-accounts" activeClassName="active"><FiGrid className="me-1" style={{ marginTop: '-2px' }} /> Manage accounts</NavLink>
-          <NavLink to="/settings"><FiSettings className="me-1" style={{ marginTop: '-2px' }} /> Settings</NavLink>
+          {/* <NavLink to="/settings"><FiSettings className="me-1" style={{ marginTop: '-2px' }} /> Settings</NavLink> */}
           <NavLink to="/profile"><FiUser className="me-1" style={{ marginTop: '-2px' }} /> Profile</NavLink>
           <NavLink to="/plan"><FiCreditCard className="me-1" style={{ marginTop: '-2px' }} /> Plan & billing</NavLink>
         </div>

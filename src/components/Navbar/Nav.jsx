@@ -8,9 +8,11 @@ const Nav = () => {
 
   return (
     <>
-      <Link to="/" className="navLink">Home</Link>
-      <Link to="/" className="navLink">Overview</Link>
-      <Link to="/" className="navLink">Pricing</Link>
+      <a href="https://glowhub.dev/" className="navLink">Home</a>
+      <a href="https://glowhub.dev/#cookies" className="navLink">Cookies</a>
+      <a href="https://glowhub.dev/#analytics" to="/" className="navLink">Analytics</a>
+      <a href="https://glowhub.dev/#feedback" className="navLink">Feedback</a>
+      <a href="https://glowhub.dev/pricing" className="navLink">Pricing</a>
       {
         !user
           ? (<><Link to="/register" className="navLink">Register</Link>

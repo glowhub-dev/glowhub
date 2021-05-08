@@ -34,7 +34,7 @@ const Audience = () => {
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-8">
           <h1 className="mb-0">Total audience</h1>
-          <p className="glow__muted mb-3 mb-md-0">Good to see you again</p>
+          <p className="glow__muted mb-3 mb-md-0">Detailed view of your audience</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
@@ -82,8 +82,6 @@ const Audience = () => {
       </div>
 
       <div className="mt-4">
-        <h3 className="m-0">Audience</h3>
-        <p className="glow__muted">Audience overview</p>
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
             <CustomCollapseCountries

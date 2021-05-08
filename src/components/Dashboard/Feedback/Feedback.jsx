@@ -63,7 +63,7 @@ const Feedback = () => {
       <div className="row justify-content-between align-items-end mb-3">
         <div className="col-sm-8">
           <h1 className="mb-0">Glow Feedback</h1>
-          <p className="glow__muted">Easy and advanced cookie management</p>
+          <p className="glow__muted">Get feedback from your customers</p>
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
