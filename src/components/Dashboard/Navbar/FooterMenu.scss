@@ -1,0 +1,38 @@
+.FooterMenu {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 65px;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 4;
+  border-top: 1px solid #404040;
+
+  .nav {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 17px;
+
+    .link {
+      color: rgb(180, 180, 180);
+      text-decoration: none;
+      font-size: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        font-size: 1.2rem;
+      }
+    }
+
+    .active {
+      color: #fff;
+    }
+  }
+}

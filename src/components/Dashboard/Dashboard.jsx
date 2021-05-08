@@ -8,6 +8,7 @@ import Navbar from './Navbar/Navbar'
 import Popup from '../Misc/Popup'
 import { AuthContext } from '../../contexts/AuthContext'
 import useAccount from '../../hooks/useAccount'
+import FooterMenu from './Navbar/FooterMenu';
 
 const Dashboard = ({ children }) => {
   const { user } = useContext(AuthContext)
@@ -59,6 +60,8 @@ const Dashboard = ({ children }) => {
           })}
         </Popup>
       }
+
+      <FooterMenu />
     </div>
   )
 }
