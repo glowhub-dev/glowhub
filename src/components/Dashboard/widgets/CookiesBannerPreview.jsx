@@ -8,7 +8,7 @@ const CookiesBannerPreview = ({ banner }) => {
         banner &&
         <div
           id="glowCookies-banner"
-          className={`glowCookies__banner glowCookies__banner__${banner?.bannerStyle} glowCookies__${banner?.border} glowCookies__left`}
+          className={`glowCookies__banner__preview glowCookies__banner__${banner?.bannerStyle} glowCookies__${banner?.border} glowCookies__left`}
           style={{ backgroundColor: banner?.background }}
         >
           <h3 style={{ color: banner?.color }}>{banner?.heading}</h3>
