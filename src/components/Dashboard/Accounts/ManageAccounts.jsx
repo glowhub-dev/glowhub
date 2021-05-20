@@ -98,9 +98,24 @@ const ManageAccounts = () => {
         <Popup close={toggleShowCode}>
           <div className="mb-4">
             <h3 className="mb-0">Your script</h3>
-            <p>Copy & paste this code snnipet to your html head or body tag.</p>
           </div>
 
+          <p>Using npm</p>
+          <SyntaxHighlighter language="javascript" style={atomDark}>
+            npm i react-glowhub
+          </SyntaxHighlighter>
+          <a
+            href="https://www.npmjs.com/package/react-glowhub"
+            className="text-white"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Learn more about npm package
+          </a>
+
+          <hr className="my-4" />
+
+          <p>Copy & paste this code snnipet to your html head or body tag.</p>
           <SyntaxHighlighter language="javascript" style={atomDark}>
             {codeString}
           </SyntaxHighlighter>
