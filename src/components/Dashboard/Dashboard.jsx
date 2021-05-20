@@ -9,7 +9,7 @@ import Popup from '../Misc/Popup'
 import { AuthContext } from '../../contexts/AuthContext'
 import useAccount from '../../hooks/useAccount'
 import FooterMenu from './Navbar/FooterMenu';
-import 'react-glowhub/dist/index.css'
+import { GlowHubLoader } from 'react-glowhub'
 
 const Dashboard = ({ children }) => {
   const { user } = useContext(AuthContext)
@@ -26,6 +26,9 @@ const Dashboard = ({ children }) => {
   return (
     <div className="Dashboard">
       <Toaster />
+      <GlowHubLoader
+        clientID='GH-JQZ5BU5GPMK'
+      />
 
       <Navbar />
       <SideBar />
