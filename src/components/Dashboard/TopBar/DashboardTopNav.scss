@@ -39,6 +39,19 @@
   }
 }
 
+.keyCmd {
+  background-color: #1c1c1c;
+  border-radius: 4px;
+  padding: 1.25px 5px;
+  color: #6D6D6D;
+}
+.keyCmd:hover {
+  background-color: #1c1c1c;
+  border-radius: 4px;
+  padding: 1.25px 5px;
+  color: #6D6D6D;
+}
+
 @media (max-width: 768px) {
   .DashboardTopNav {
     display: none;

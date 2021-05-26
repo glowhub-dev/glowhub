@@ -40,18 +40,24 @@ const FeedBackPreview = ({ account, user }) => {
           <div className="mt-3 mb-0 d-flex justify-content-between">
             <span>Positive feedback</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${wdata.percentPositive < 0 ? 'text-danger' : 'text-success'}`}>
-                ({wdata.percentPositive})
-            </small>
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${wdata.percentPositive >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}
+              >
+                {wdata.percentPositive}
+              </small>
               {wdata.positive}
             </span>
           </div>
           <div className="mb-2 d-flex justify-content-between">
             <span>Negative feedback</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${wdata.percentNegative > 0 ? 'text-danger' : 'text-success'}`}>
-                ({wdata.percentNegative})
-            </small>
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${wdata.percentNegative >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}
+              >
+                {wdata.percentNegative}
+              </small>
               {wdata.negative}
             </span>
           </div>

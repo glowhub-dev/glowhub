@@ -288,3 +288,19 @@ h1 {
   height: 150px;
   width: 100vw;
 }
+
+.badge-sm-success {
+  background-color: #2c752831;
+  color: #6fd16a;
+  padding: 1.5px 7px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.badge-sm-danger {
+  background-color: #9e222231;
+  color: #fa8d8d;
+  padding: 1.5px 7px;
+  border-radius: 5px;
+  font-size: 12px;
+}

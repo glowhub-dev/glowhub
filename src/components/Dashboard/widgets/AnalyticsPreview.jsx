@@ -49,17 +49,22 @@ const AnalyticsPreview = ({ account, user }) => {
           <div className="mt-3 mb-0 d-flex justify-content-between">
             <span>Last week users</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${views && views.percentUsers < 0 ? 'text-danger' : 'text-success'}`}>
-                ({views && views.percentUsers})
-            </small>
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${views && views.percentUsers >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}>
+                {views && views.percentUsers}
+              </small>
               {views && views.totalUsers}
             </span>
           </div>
           <div className="mb-2 d-flex justify-content-between">
             <span>Last week views</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${views && views.percentViews < 0 ? 'text-danger' : 'text-success'}`}>
-                ({views && views.percentViews})
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${views && views.percentViews >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}
+              >
+                {views && views.percentViews}
               </small>
               {views && views.totalViews}
             </span>

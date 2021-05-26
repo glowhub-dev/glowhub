@@ -29,7 +29,7 @@ const CustomCollapsePages = ({ data }) => {
         }
       </div>
       <div className="mt-3">
-        {
+        {dataToUse && dataToUse.length >= 5 ?
           collapsed
             ? <button onClick={() => setCollapsed(!collapsed)} className="white__link">
               <small>See more <FiArrowDown /></small>
@@ -37,7 +37,7 @@ const CustomCollapsePages = ({ data }) => {
             : <button onClick={() => setCollapsed(!collapsed)} className="white__link">
               <small>See less <FiArrowUp /></small>
             </button>
-        }
+          : null}
       </div>
     </div>
   )

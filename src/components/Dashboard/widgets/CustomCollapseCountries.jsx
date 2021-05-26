@@ -39,7 +39,7 @@ const CustomCollapseCountries = ({ data, title }) => {
               }
             </div>
             <div className="mt-3">
-              {
+              {dataToUse && dataToUse.length >= 5 ?
                 collapsed
                   ? <button onClick={() => setCollapsed(!collapsed)} className="white__link">
                     <small>See more <FiArrowDown /></small>
@@ -47,7 +47,7 @@ const CustomCollapseCountries = ({ data, title }) => {
                   : <button onClick={() => setCollapsed(!collapsed)} className="white__link">
                     <small>See less <FiArrowUp /></small>
                   </button>
-              }
+                : null}
             </div>
           </div>
           : <div className="card__dashboard p-1 mb-2">

@@ -13,6 +13,7 @@ import { FiExternalLink } from 'react-icons/fi';
 import { analyticsPreviewData } from './SampleData/sampleData'
 import Popup from '../Misc/Popup';
 import CreateAccount from './Accounts/CreateAccount';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
@@ -69,6 +70,15 @@ const Home = () => {
                 : <option value="no">No accounts</option>
             }
           </select>
+          {
+            fullAccount?.billing_plan !== 'pro'
+            && <Link
+              to="/plan"
+              className="glow__btn__dark mb-2 ms-2"
+            >
+              Become unlimited
+            </Link>
+          }
         </div>
       </div>
 

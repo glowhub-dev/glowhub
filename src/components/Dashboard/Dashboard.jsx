@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types';
 import SideBar from './SideBar/SideBar'
 import './Dashboard.scss'
@@ -10,18 +10,36 @@ import { AuthContext } from '../../contexts/AuthContext'
 import useAccount from '../../hooks/useAccount'
 import FooterMenu from './Navbar/FooterMenu';
 import { GlowHubLoader } from 'react-glowhub'
+import { SideBarContext } from '../../contexts/SideBarContext';
 
 const Dashboard = ({ children }) => {
   const { user } = useContext(AuthContext)
   const { changeAccount } = useAccount()
+  const { sidebar, setSidebarStatus } = useContext(SideBarContext)
+
+  const changeSidebarCollapse = () => {
+    setSidebarStatus(!sidebar)
+  }
 
   const [changeAccountModal, setChangeAccount] = useState(false)
-  const togglechangeAccount = () => { setChangeAccount(!changeAccountModal) }
+  const togglechangeAccount = useCallback(() => { setChangeAccount(!changeAccountModal) }, [changeAccountModal])
 
   const changeAccountFunc = (account) => {
     changeAccount(account)
     togglechangeAccount()
   }
+
+
+  const detectCommand = useCallback((e) => {
+    if (e.key === '7' && e.ctrlKey) {
+      togglechangeAccount()
+    }
+  }, [togglechangeAccount])
+
+  useEffect(() => {
+    window.addEventListener('keypress', detectCommand, true)
+    return () => window.removeEventListener('keypress', detectCommand, true)
+  }, [detectCommand])
 
   return (
     <div className="Dashboard">
@@ -31,7 +49,10 @@ const Dashboard = ({ children }) => {
       />
 
       <Navbar />
-      <SideBar />
+      <SideBar
+        sidebarCollapsed={sidebar}
+        changeSidebarCollapse={changeSidebarCollapse}
+      />
       <div className="content">
         <DashboardTopNav changeAccount={togglechangeAccount} />
         <div className="children">

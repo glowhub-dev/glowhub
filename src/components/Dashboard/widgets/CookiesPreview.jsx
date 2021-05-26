@@ -41,18 +41,23 @@ const CookiesPreview = ({ account, user }) => {
           <div className="mt-3 mb-0 d-flex justify-content-between">
             <span>Cookies Accepted</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${wdata && wdata.percentAccepted < 0 ? 'text-danger' : 'text-success'}`}>
-                ({wdata && wdata.percentAccepted})
-            </small>
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${wdata && wdata.percentRejected >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}>
+                {wdata && wdata.percentAccepted}
+              </small>
               {wdata?.accepted}
             </span>
           </div>
           <div className="mb-2 d-flex justify-content-between">
             <span>Cookies Rejected</span>
             <span>
-              <small data-tip="Compared to data from the previous week" className={`me-2 ${wdata && wdata.percentRejected > 0 ? 'text-danger' : 'text-success'}`}>
-                ({wdata && wdata.percentRejected})
-            </small>
+              <small
+                data-tip="Compared to data from the previous week"
+                className={`me-2 ${wdata && wdata.percentRejected >= 0 ? 'badge-sm-success' : 'badge-sm-danger'}`}>
+                {wdata && wdata.percentRejected}
+              </small>
+
               {wdata?.rejected}
             </span>
           </div>
