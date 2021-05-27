@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
+import { ThemeContext } from '../../../contexts/ThemeContext'
 import useAccount from '../../../hooks/useAccount'
 import { getTotalAudicence } from '../../../services/ViewsService'
 import Dashboard from '../Dashboard'
@@ -11,6 +12,7 @@ const oneDayInMilisec = (1000 * 60 * 60 * 24)
 
 const Audience = () => {
   const { user } = useContext(AuthContext)
+  const { theme } = useContext(ThemeContext)
   const [audience, setAudience] = useState()
   const { account, changeAccount } = useAccount()
   const [fromDate, setFromDate] = useState(6)
@@ -38,7 +40,7 @@ const Audience = () => {
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
-            className="glow__select mb-2 me-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2 me-2`}
             aria-label="Default select example"
             onChange={changeFromDate}
             value={fromDate}
@@ -51,7 +53,7 @@ const Audience = () => {
             <option value={359}>Last year</option>
           </select>
           <select
-            className="glow__select mb-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2`}
             aria-label="Default select example"
             value={account}
             onChange={(e) => { changeAccount(e.target.value) }}

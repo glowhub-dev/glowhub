@@ -1,0 +1,39 @@
+@import "./glow-variables.scss";
+
+:root {
+  --body-bg: #{$body-bg};
+  --body-color: #{$body-color};
+  --borders: #{$borders};
+  --dark-color: #{$dark-color};
+  --card-bg: #{$card-bg};
+  --card-bg-hover: #{$card-bg-hover};
+  --card-color: #{$card-color};
+
+  --sidebar-background: #{$sidebar-background};
+  --sidebar-link-color: #{$sidebar-link-color};
+  --sidebar-link-color-hover: #{$sidebar-link-color-hover};
+
+  --badge-success-bg: #{$badge-success-bg};
+  --badge-success-color: #{$badge-success-color};
+  --badge-danger-bg: #{$badge-danger-bg};
+  --badge-danger-color: #{$badge-danger-color};
+}
+
+.light-mode {
+  --body-bg: #{$d-body-bg};
+  --body-color: #{$d-body-color};
+  --borders: #{$d-borders};
+  --dark-color: #{$d-dark-color};
+  --card-bg: #{$d-card-bg};
+  --card-bg-hover: #{$d-card-bg-hover};
+  --card-color: #{$d-card-color};
+
+  --sidebar-background: #{$d-sidebar-background};
+  --sidebar-link-color: #{$d-sidebar-link-color};
+  --sidebar-link-color-hover: #{$d-sidebar-link-color-hover};
+
+  --badge-success-bg: #{$d-badge-success-bg};
+  --badge-success-color: #{$d-badge-success-color};
+  --badge-danger-bg: #{$d-badge-danger-bg};
+  --badge-danger-color: #{$d-badge-danger-color};
+}

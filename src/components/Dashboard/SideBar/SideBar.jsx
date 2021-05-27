@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import './SideBar.scss'
 import { FiHome, FiGrid, FiMessageSquare, FiShield, FiUser, FiCreditCard, FiPieChart, FiZap } from "react-icons/fi";
 import Popup from '../../Misc/Popup';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const SideBar = ({ sidebarCollapsed, changeSidebarCollapse }) => {
   const [whatsNewModal, setWhatsNewModal] = useState(false)
   const toggleWhatsNewModal = () => { setWhatsNewModal(!whatsNewModal) }
+  const { theme } = useContext(ThemeContext)
 
   return (
     <>
@@ -17,9 +19,13 @@ const SideBar = ({ sidebarCollapsed, changeSidebarCollapse }) => {
           <div className="logoSection">
             <div onClick={changeSidebarCollapse} className="logo">
               {
-                sidebarCollapsed
-                  ? <img src="/icon.png" alt="glowhub logo" />
-                  : <img src="/glowhub.svg" alt="glowhub logo" />
+                theme === 'dark'
+                  ? sidebarCollapsed
+                    ? <img src="/icon.svg" alt="glowhub logo" />
+                    : <img src="/glowhub.svg" alt="glowhub logo" />
+                  : sidebarCollapsed
+                    ? <img src="/icon-dark.svg" alt="glowhub logo" />
+                    : <img src="/glowhub-dark.svg" alt="glowhub logo" />
               }
             </div>
           </div>

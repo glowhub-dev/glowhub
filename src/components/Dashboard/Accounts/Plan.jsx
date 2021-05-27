@@ -6,6 +6,7 @@ import useAccount from '../../../hooks/useAccount'
 import Dashboard from '../Dashboard'
 import CheckoutForm from './Stripe/CheckoutForm'
 import { cancelSubscription } from '../../../services/AccountService'
+import { ThemeContext } from '../../../contexts/ThemeContext'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -22,6 +23,7 @@ const successToast = () => toast.success('Account updated successfully', toastCo
 const errorToast = () => toast.error('An error has occurred', toastConfig)
 
 const Plan = () => {
+  const { theme } = useContext(ThemeContext)
   const { user, getUser } = useContext(AuthContext)
   const [loading, setLoading] = useState(false)
   const { account, changeAccount } = useAccount()
@@ -63,7 +65,7 @@ const Plan = () => {
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
-            className="glow__select mb-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2`}
             aria-label="Default select example"
             value={account}
             onChange={(e) => { changeAccount(e.target.value) }}

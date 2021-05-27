@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import PropTypes from 'prop-types';
 import {
   VictoryLine,
@@ -10,8 +10,10 @@ import {
 
   VictoryVoronoiContainer
 } from 'victory';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }) => {
+  const { theme } = useContext(ThemeContext)
 
   const [height, setHeight] = useState(150)
   const setHeightw = () => {
@@ -68,7 +70,7 @@ const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }
           }
         }}
         style={{
-          axis: { stroke: '#FFF', strokeWidth: 0 },
+          axis: { stroke: `${theme === 'light' ? '#fff' : '#000'}`, strokeWidth: 0 },
           ticks: { strokeWidth: 0 },
           tickLabels: {
             fill: '#6D6D6D',
@@ -83,7 +85,7 @@ const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }
         standalone={false}
         style={{
           grid: {
-            stroke: "#ffffff",
+            stroke: `${theme === 'light' ? '#000' : '#fff'}`,
             strokeWidth: 0.1
           },
           axis: { stroke: '#FFF', strokeWidth: 0 },
@@ -104,7 +106,7 @@ const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }
               labels: {
                 fontFamily: "inherit",
                 fontSize: 8,
-                fill: '#fff'
+                fill: `${theme === 'light' ? '#000' : '#fff'}`
               }
             }}
             animate={{
@@ -121,7 +123,7 @@ const GlowChart = ({ data, data2, x = 'day', y = 'views', color, type = 'line' }
               labels: {
                 fontFamily: "inherit",
                 fontSize: 8,
-                fill: '#fff'
+                fill: `${theme === 'light' ? '#000' : '#fff'}`
               }
             }}
             animate={{

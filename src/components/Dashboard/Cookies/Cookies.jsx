@@ -8,6 +8,7 @@ import CookiesBannerPreview from '../widgets/CookiesBannerPreview'
 import toast from 'react-hot-toast'
 import { Collapse } from 'react-collapse';
 import ColapseCard from './ColapseCard'
+import { ThemeContext } from '../../../contexts/ThemeContext'
 
 const toastConfig = {
   style: {
@@ -20,6 +21,7 @@ const bannerUpdated = () => toast.success('Banner updated successfully', toastCo
 const errorOn = () => toast.success('An error has occurred', toastConfig)
 
 const Cookies = () => {
+  const { theme } = useContext(ThemeContext)
   const { user } = useContext(AuthContext)
   const { account, changeAccount } = useAccount()
   const [wData, setwData] = useState()
@@ -69,7 +71,7 @@ const Cookies = () => {
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
-            className="glow__select mb-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2`}
             aria-label="Default select example"
             value={account}
             onChange={(e) => { changeAccount(e.target.value) }}

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { AuthContext } from '../../../contexts/AuthContext'
+import { ThemeContext } from '../../../contexts/ThemeContext'
 import useAccount from '../../../hooks/useAccount'
 import { getViewsOnline } from '../../../services/ViewsService'
 import Dashboard from '../Dashboard'
@@ -11,13 +12,12 @@ const Online = () => {
   const { user } = useContext(AuthContext)
   const { account, changeAccount } = useAccount()
   const [views, setViews] = useState()
-  //const [loading, setLoading] = useState(true)
+  const { theme } = useContext(ThemeContext)
 
   const getViews = useCallback(async () => {
     try {
       const views = await getViewsOnline(account)
       views && setViews(views)
-      //setLoading(false)
     } catch (e) {
       console.log(e)
     }
@@ -40,7 +40,7 @@ const Online = () => {
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
-            className="glow__select mb-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2`}
             aria-label="Default select example"
             value={account}
             onChange={(e) => { changeAccount(e.target.value) }}

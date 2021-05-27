@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types';
 import { VictoryLine, VictoryAxis, VictoryChart } from 'victory';
+import { ThemeContext } from '../../../contexts/ThemeContext';
 
 const MiniChart = ({ data, height = 40, x = 'day', y = 'views', type = 'line' }) => {
+  const { theme } = useContext(ThemeContext)
+
   return (
     <VictoryChart
       height={height}
@@ -13,7 +16,7 @@ const MiniChart = ({ data, height = 40, x = 'day', y = 'views', type = 'line' })
       <VictoryAxis style={{ tickLabels: { fontSize: 0 } }} />
       <VictoryLine
         style={{
-          data: { stroke: '#fff', strokeWidth: 4, opacity: 0.4 },
+          data: { stroke: `${theme === 'light' ? '#000' : '#fff'}`, strokeWidth: 4, opacity: 0.3 },
         }}
         animate={{
           duration: 2000,

@@ -14,9 +14,11 @@ import { analyticsPreviewData } from './SampleData/sampleData'
 import Popup from '../Misc/Popup';
 import CreateAccount from './Accounts/CreateAccount';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
+  const { theme } = useContext(ThemeContext)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
   const [views, setViews] = useState({})
@@ -59,7 +61,7 @@ const Home = () => {
         </div>
         <div className="col-sm-4 text-left text-sm-end">
           <select
-            className="glow__select mb-2"
+            className={`${theme === 'light' ? 'glow__select__light' : 'glow__select'} mb-2`}
             aria-label="Default select example"
             value={account}
             onChange={(e) => { changeAccount(e.target.value) }}
@@ -74,7 +76,7 @@ const Home = () => {
             fullAccount?.billing_plan !== 'pro'
             && <Link
               to="/plan"
-              className="glow__btn__dark mb-2 ms-2"
+              className="glow__btn__dark__blue mb-2 ms-2"
             >
               Become unlimited
             </Link>
@@ -147,7 +149,7 @@ const Home = () => {
         </Popup>
       }
 
-    </Dashboard>
+    </Dashboard >
   )
 }
 

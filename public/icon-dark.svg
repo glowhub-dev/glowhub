@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="195px" height="187px" viewBox="0 0 195 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 6</title>
+    <defs>
+        <filter color-interpolation-filters="auto" id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-6" filter="url(#filter-1)">
+            <g>
+                <path d="M167,0 C182.463973,-9.94611311e-15 195,12.536027 195,28 L195,159 C195,174.463973 182.463973,187 167,187 L28,187 C12.536027,187 1.8937905e-15,174.463973 0,159 L0,28 C-5.44650418e-15,12.536027 12.536027,2.84068575e-15 28,0 L167,0 Z M151,33 L50,33 C43.9248678,33 39,37.9248678 39,44 L39,76 C39,82.0751322 43.9248678,87 50,87 L107,87 L107,143 C107,149.075132 111.924868,154 118,154 L151,154 C157.075132,154 162,149.075132 162,143 L162,44 C162,37.9248678 157.075132,33 151,33 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
