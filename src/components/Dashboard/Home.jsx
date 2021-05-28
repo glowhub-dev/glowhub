@@ -9,19 +9,33 @@ import { getAnalyticsHomeWidget } from '../../services/ViewsService';
 import AnalyticsPreview from './widgets/AnalyticsPreview'
 import CookiesPreview from './widgets/CookiesPreview';
 import FeedBackPreview from './widgets/FeedBackPreview'
-import { FiExternalLink } from 'react-icons/fi';
+import { FiMoon, FiSun, FiToggleLeft, FiToggleRight } from 'react-icons/fi';
 import { analyticsPreviewData } from './SampleData/sampleData'
 import Popup from '../Misc/Popup';
 import CreateAccount from './Accounts/CreateAccount';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { SideBarContext } from '../../contexts/SideBarContext';
 
 const Home = () => {
   const { user } = useContext(AuthContext)
-  const { theme } = useContext(ThemeContext)
+  const { theme, setThemeContext } = useContext(ThemeContext)
   const { account, changeAccount } = useAccount()
   const [fullAccount, setfullAccount] = useState({})
   const [views, setViews] = useState({})
+  const { sidebar, setSidebarStatus } = useContext(SideBarContext)
+
+  const changeSidebarCollapse = () => {
+    setSidebarStatus(!sidebar)
+  }
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setThemeContext('dark')
+    } else {
+      setThemeContext('light')
+    }
+  }
 
   const [createModal, setcreateModal] = useState(false)
   const togglecreateModal = () => { setcreateModal(!createModal) }
@@ -130,14 +144,41 @@ const Home = () => {
 
         <div className="row g-2 g-md-3">
           <div className="col-lg-4">
-            <div className="card__dashboard card__hoverable p-4" style={{ height: '150px' }}>
+            <div onClick={toggleTheme} className="card__dashboard card__hoverable p-4" style={{ height: '150px' }}>
               <div className="h-100 d-flex flex-column justify-content-between">
-                <small><FiExternalLink /> dev.to</small>
-                <h5>My top 3 Useful Hacks for Working from Home</h5>
+                {
+                  theme !== 'light'
+                    ? <>
+                      <small><FiSun className="me-1" /> Light</small>
+                      <h5>Click me to try the new Glowhub light theme</h5>
+                    </>
+                    : <>
+                      <small><FiMoon className="me-1" /> Dark</small>
+                      <h5>Click me to return to Glowhub dark theme</h5>
+                    </>
+                }
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div onClick={changeSidebarCollapse} className="card__dashboard card__hoverable p-4" style={{ height: '150px' }}>
+              <div className="h-100 d-flex flex-column justify-content-between">
+                {
+                  sidebar === true
+                    ? <>
+                      <small><FiToggleLeft className="me-1" /> Uncollapse</small>
+                      <h5>Click me to open de Sidebar again</h5>
+                    </>
+                    : <>
+                      <small><FiToggleRight className="me-1" /> Collapse</small>
+                      <h5>Click me to try the new Glowhub collapsible sidebar</h5>
+                    </>
+                }
               </div>
             </div>
           </div>
         </div>
+
       </div>
 
       {
@@ -149,7 +190,7 @@ const Home = () => {
         </Popup>
       }
 
-    </Dashboard >
+    </Dashboard>
   )
 }
 

@@ -230,14 +230,14 @@ h1 {
 
 
 .white__link {
-  color: #9c9c9c;
+  color: var(--dark-color);
   text-decoration: none;
   background-color: transparent;
   border: none;
   padding: 0;
 
   &:hover {
-    color: #ebebeb;
+    color: var(--body-color);
     text-decoration: none;
   }
 }

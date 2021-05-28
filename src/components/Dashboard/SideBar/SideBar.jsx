@@ -98,6 +98,10 @@ const SideBar = ({ sidebarCollapsed, changeSidebarCollapse }) => {
             <small className="glow__muted">Add Glowhub to your React app with just one component.
             <a href="https://www.npmjs.com/package/react-glowhub" target="_blank" rel="noreferrer">Take a look at npmjs.com</a></small>
           </div>
+          <div className="mt-3">
+            <h6 className="mb-0">New light theme</h6>
+            <small className="glow__muted">Click on 'light' button in the navbar to try it out.</small>
+          </div>
 
         </Popup>
       }
