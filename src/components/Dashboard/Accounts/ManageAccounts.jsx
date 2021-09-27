@@ -22,7 +22,7 @@ const ManageAccounts = () => {
     setshowCode(!showCode)
     setAccCode(code)
   }
-  const codeString = `<script src="https://cdn.jsdelivr.net/gh/glowhub-dev/glowhub-scripts@1.0.2/glowHub.min.js"></script>
+  const codeString = `<script src="https://cdn.jsdelivr.net/gh/glowhub-dev/glowhub-scripts@1.1/glowHub.min.js"></script>
 <script> 
   glowHubScript.init('${accCode}'); 
 </script>`
